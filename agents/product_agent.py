@@ -13,6 +13,7 @@ Responsibilities:
 
 import logging
 
+from core.llm import call_llm
 from core.message_bus import MessageBus
 
 logger = logging.getLogger(__name__)
@@ -51,6 +52,41 @@ class ProductAgent:
         msg = messages[-1]
         logger.info(f"Product agent received {msg.message_type.value} from {msg.from_agent}")
 
-        # TODO: call LLM to generate spec
-        # TODO: send result back to CEO
-        pass
+        # Build prompt based on message type
+        if msg.message_type.value == "revision_request":
+            feedback = msg.payload.get("feedback", "")
+            idea = msg.payload.get("startup_idea", "")
+            user_prompt = (
+                f"The previous product spec was rejected. Feedback: {feedback}\n\n"
+                f"Original startup idea: {idea}\n\n"
+                "Please generate an improved product specification addressing the feedback."
+            )
+        else:
+            idea = msg.payload.get("startup_idea", "")
+            instructions = msg.payload.get("instructions", "")
+            user_prompt = f"Startup idea: {idea}\n\nAdditional instructions: {instructions}"
+
+        try:
+            spec = call_llm(SYSTEM_PROMPT, user_prompt, json_mode=True)
+            logger.info(f"Product agent generated spec for: {spec.get('product_name', 'unknown')}")
+        except Exception as e:
+            logger.error(f"Product agent LLM call failed: {e}")
+            error_msg = self.message_bus.create_message(
+                from_agent=self.name,
+                to_agent="ceo",
+                message_type="result",
+                payload={"error": str(e)},
+                parent_message_id=msg.message_id,
+            )
+            self.message_bus.send(error_msg)
+            return
+
+        result_msg = self.message_bus.create_message(
+            from_agent=self.name,
+            to_agent="ceo",
+            message_type="result",
+            payload=spec,
+            parent_message_id=msg.message_id,
+        )
+        self.message_bus.send(result_msg)
+        logger.info("Product agent sent spec to CEO.")
