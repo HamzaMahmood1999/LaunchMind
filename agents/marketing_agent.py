@@ -80,7 +80,7 @@ class MarketingAgent:
                 f"GitHub PR URL for reference: {pr_url}"
             )
 
-        # Generate marketing copy via LLM
+        # Generate marketing copy
         try:
             copy = call_llm(SYSTEM_PROMPT, user_prompt, json_mode=True)
             logger.info(f"Marketing agent generated copy. Tagline: {copy.get('tagline', '')}")
@@ -96,8 +96,34 @@ class MarketingAgent:
             self.message_bus.send(error_msg)
             return
 
-        # TODO: send email via SendGrid
-        # TODO: post Slack message with Block Kit
+        # Send cold outreach email via SendGrid
+        try:
+            recipient = self.email.default_recipient or "test@example.com"
+            email_result = self.email.send_email(
+                to_email=recipient,
+                subject=copy.get("email_subject", "Check out our new product!"),
+                body_html=copy.get("email_body_html", "<p>Hello!</p>"),
+            )
+            logger.info(f"Email send result: {email_result}")
+        except Exception as e:
+            logger.error(f"Email send failed: {e}")
+
+        # Post to Slack with Block Kit
+        try:
+            product_name = spec.get("product_name", "LaunchMind Product")
+            blocks = self.slack.build_launch_blocks(
+                product_name=product_name,
+                tagline=copy.get("tagline", ""),
+                description=copy.get("description", ""),
+                pr_url=pr_url,
+            )
+            slack_result = self.slack.post_message(
+                text=f"New Launch: {product_name} - {copy.get('tagline', '')}",
+                blocks=blocks,
+            )
+            logger.info(f"Slack post result: {slack_result.get('ok')}")
+        except Exception as e:
+            logger.error(f"Slack post failed: {e}")
 
         # Send results back to CEO
         result_msg = self.message_bus.create_message(
