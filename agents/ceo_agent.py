@@ -44,6 +44,13 @@ You MUST return valid JSON with these exact keys:
 
 Return ONLY the JSON object."""
 
+SUMMARY_PROMPT = """You are the CEO writing a final launch summary for Slack. Given the results from your team, write a concise but exciting launch summary.
+
+Include: product name, what was built, key highlights, and next steps.
+Keep it under 200 words. Use markdown formatting compatible with Slack (bold with *, not **).
+
+Return ONLY the summary text, no JSON."""
+
 MAX_PRODUCT_REVISIONS = 1
 MAX_QA_RETRIES = 1
 
@@ -70,15 +77,15 @@ class CEOAgent:
         """
         logger.info(f"CEO agent starting pipeline for idea: {startup_idea[:80]}...")
 
-        # Step 1: Decompose idea into tasks
+        # ── Step 1: Decompose idea into tasks ──
         logger.info("Step 1: Decomposing startup idea into tasks...")
         tasks = self._decompose_idea(startup_idea)
         if not tasks:
             logger.error("Failed to decompose idea. Aborting.")
             return
-        logger.info("Tasks created for: product, engineer, marketing")
+        logger.info(f"Tasks created for: product, engineer, marketing")
 
-        # Step 2: Send task to Product Agent
+        # ── Step 2: Send task to Product Agent ──
         logger.info("Step 2: Dispatching task to Product agent...")
         task_msg = self.message_bus.create_message(
             from_agent="ceo",
@@ -97,7 +104,7 @@ class CEOAgent:
             return
         product_spec = product_result.payload
 
-        # Step 3: CEO reviews product spec (feedback loop)
+        # ── Step 3: CEO reviews product spec (feedback loop) ──
         logger.info("Step 3: Reviewing product spec...")
         for revision in range(MAX_PRODUCT_REVISIONS + 1):
             review = self._review_spec(product_spec)
@@ -126,12 +133,126 @@ class CEOAgent:
                         break
                     product_spec = product_result.payload
 
-        # TODO: Step 4 — dispatch to Engineer agent
-        # TODO: Step 5 — dispatch to Marketing agent
-        # TODO: Step 6 — dispatch to QA agent
-        # TODO: Step 7 — QA feedback loop
-        # TODO: Step 8 — post final summary to Slack
-        pass
+        # ── Step 4: Send task to Engineer Agent ──
+        logger.info("Step 4: Dispatching task to Engineer agent...")
+        eng_msg = self.message_bus.create_message(
+            from_agent="ceo",
+            to_agent="engineer",
+            message_type="task",
+            payload={
+                "spec": product_spec,
+                "instructions": tasks["engineer_task"],
+            },
+        )
+        self.message_bus.send(eng_msg)
+        self.engineer_agent.run()
+        engineer_result = self._get_result_from("engineer")
+        if not engineer_result or "error" in engineer_result.payload:
+            logger.error("Engineer agent failed. Continuing without GitHub artifacts.")
+
+        # ── Step 5: Send task to Marketing Agent ──
+        logger.info("Step 5: Dispatching task to Marketing agent...")
+        pr_url = engineer_result.payload.get("pr_url", "") if engineer_result else ""
+        mkt_msg = self.message_bus.create_message(
+            from_agent="ceo",
+            to_agent="marketing",
+            message_type="task",
+            payload={
+                "spec": product_spec,
+                "instructions": tasks["marketing_task"],
+                "pr_url": pr_url,
+            },
+        )
+        self.message_bus.send(mkt_msg)
+        self.marketing_agent.run()
+        marketing_result = self._get_result_from("marketing")
+        if not marketing_result or "error" in marketing_result.payload:
+            logger.error("Marketing agent failed. Continuing without marketing artifacts.")
+
+        # ── Step 6: Send to QA Agent ──
+        logger.info("Step 6: Dispatching outputs to QA agent...")
+        qa_msg = self.message_bus.create_message(
+            from_agent="ceo",
+            to_agent="qa",
+            message_type="task",
+            payload={
+                "html": engineer_result.payload.get("html", "") if engineer_result else "",
+                "marketing_copy": marketing_result.payload if marketing_result else {},
+                "pr_number": engineer_result.payload.get("pr_number", 0) if engineer_result else 0,
+                "commit_sha": engineer_result.payload.get("commit_sha", "") if engineer_result else "",
+                "branch": engineer_result.payload.get("branch", "") if engineer_result else "",
+            },
+        )
+        self.message_bus.send(qa_msg)
+        self.qa_agent.run()
+        qa_result = self._get_result_from("qa")
+        qa_report = qa_result.payload if qa_result else {"overall_verdict": "pass"}
+
+        # ── Step 7: QA feedback loop ──
+        for retry in range(MAX_QA_RETRIES):
+            if qa_report.get("overall_verdict") == "pass":
+                logger.info("QA passed! All outputs approved.")
+                break
+
+            logger.info(f"QA failed (attempt {retry + 1}). Processing revision requests...")
+
+            # Revise engineer output if needed
+            if qa_report.get("html_review", {}).get("verdict") == "fail" and engineer_result:
+                logger.info("Sending revision request to Engineer agent...")
+                rev_msg = self.message_bus.create_message(
+                    from_agent="ceo",
+                    to_agent="engineer",
+                    message_type="revision_request",
+                    payload={
+                        "feedback": qa_report["html_review"],
+                        "spec": product_spec,
+                    },
+                    parent_message_id=engineer_result.message_id,
+                )
+                self.message_bus.send(rev_msg)
+                self.engineer_agent.run()
+                engineer_result = self._get_result_from("engineer")
+
+            # Revise marketing output if needed
+            if qa_report.get("marketing_review", {}).get("verdict") == "fail" and marketing_result:
+                logger.info("Sending revision request to Marketing agent...")
+                rev_msg = self.message_bus.create_message(
+                    from_agent="ceo",
+                    to_agent="marketing",
+                    message_type="revision_request",
+                    payload={
+                        "feedback": qa_report["marketing_review"],
+                        "spec": product_spec,
+                        "pr_url": engineer_result.payload.get("pr_url", "") if engineer_result else "",
+                    },
+                    parent_message_id=marketing_result.message_id,
+                )
+                self.message_bus.send(rev_msg)
+                self.marketing_agent.run()
+                marketing_result = self._get_result_from("marketing")
+
+            # Re-run QA
+            qa_msg = self.message_bus.create_message(
+                from_agent="ceo",
+                to_agent="qa",
+                message_type="task",
+                payload={
+                    "html": engineer_result.payload.get("html", "") if engineer_result else "",
+                    "marketing_copy": marketing_result.payload if marketing_result else {},
+                    "pr_number": engineer_result.payload.get("pr_number", 0) if engineer_result else 0,
+                    "commit_sha": engineer_result.payload.get("commit_sha", "") if engineer_result else "",
+                    "branch": engineer_result.payload.get("branch", "") if engineer_result else "",
+                },
+            )
+            self.message_bus.send(qa_msg)
+            self.qa_agent.run()
+            qa_result = self._get_result_from("qa")
+            qa_report = qa_result.payload if qa_result else {"overall_verdict": "pass"}
+
+        # ── Step 8: Post final summary to Slack ──
+        logger.info("Step 8: Posting final summary to Slack...")
+        self._post_final_summary(product_spec, engineer_result, marketing_result, qa_report)
+        logger.info("CEO agent pipeline complete!")
 
     def _decompose_idea(self, startup_idea: str) -> dict | None:
         """Use LLM to break the startup idea into structured tasks."""
@@ -139,12 +260,14 @@ class CEOAgent:
             tasks = call_llm(DECOMPOSE_PROMPT, f"Startup idea: {startup_idea}", json_mode=True)
             logger.info(f"Decompose result keys: {list(tasks.keys()) if isinstance(tasks, dict) else type(tasks)}")
 
+            # Handle nested response (some models wrap in an outer key)
             if isinstance(tasks, dict) and "product_task" not in tasks:
                 for key in tasks:
                     if isinstance(tasks[key], dict) and "product_task" in tasks[key]:
                         tasks = tasks[key]
                         break
 
+            # Validate required keys exist
             required = ["product_task", "engineer_task", "marketing_task"]
             missing = [k for k in required if k not in tasks]
             if missing:
@@ -173,3 +296,37 @@ class CEOAgent:
             if msg.from_agent == agent_name:
                 return msg
         return None
+
+    def _post_final_summary(self, spec, engineer_result, marketing_result, qa_report):
+        """Compile and post final summary to Slack."""
+        product_name = spec.get("product_name", "Unknown Product")
+        pr_url = engineer_result.payload.get("pr_url", "") if engineer_result else ""
+        tagline = marketing_result.payload.get("tagline", "") if marketing_result else ""
+        verdict = qa_report.get("overall_verdict", "unknown")
+
+        # Generate summary with LLM
+        try:
+            context = (
+                f"Product: {product_name}\n"
+                f"Tagline: {tagline}\n"
+                f"PR URL: {pr_url}\n"
+                f"QA Verdict: {verdict}\n"
+                f"Value Proposition: {spec.get('value_proposition', '')}\n"
+            )
+            summary_text = call_llm(SUMMARY_PROMPT, context, json_mode=False)
+        except Exception:
+            summary_text = (
+                f"*{product_name}* launch pipeline complete!\n\n"
+                f"Tagline: {tagline}\n"
+                f"QA Verdict: {verdict}\n"
+                f"PR: {pr_url}"
+            )
+
+        blocks = self.slack.build_launch_blocks(
+            product_name=product_name,
+            tagline=tagline,
+            description=summary_text,
+            pr_url=pr_url,
+        )
+        self.slack.post_message(text=f"LaunchMind: {product_name} pipeline complete!", blocks=blocks)
+        logger.info("Final summary posted to Slack.")
