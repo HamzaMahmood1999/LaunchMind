@@ -232,6 +232,7 @@ class MessageBus:
             List of AgentMessage objects (may be empty).
         """
         agent_name = agent_name.strip().lower()
+        # QA agent uses thread context to correlate PR review comments with task messages
         cursor = self._conn.execute(
             """
             SELECT message_id, from_agent, to_agent, message_type,
@@ -281,6 +282,7 @@ class MessageBus:
         Returns:
             List of AgentMessage objects in chronological order.
         """
+        # QA agent uses thread context to correlate PR review comments with task messages
         cursor = self._conn.execute(
             """
             SELECT message_id, from_agent, to_agent, message_type,
@@ -313,6 +315,7 @@ class MessageBus:
         Returns:
             List of all AgentMessage objects in chronological order.
         """
+        # QA agent uses thread context to correlate PR review comments with task messages
         cursor = self._conn.execute(
             """
             SELECT message_id, from_agent, to_agent, message_type,
