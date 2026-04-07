@@ -48,3 +48,37 @@ main.py                  ← Entry point & orchestrator
 | `SENDGRID_API_KEY` | SendGrid Email |
 
 See `.env.example` for the full list.
+
+## Setup Instructions
+
+### Prerequisites
+- Python 3.11+
+- [Ollama](https://ollama.ai/) running locally with a model pulled (e.g. `ollama pull phi4`)
+- GitHub Personal Access Token (PAT) with `repo` + `workflow` scopes
+- Slack Bot Token (`xoxb-...`) with `chat:write`, `channels:read`, `channels:join` scopes
+- SendGrid API key with Mail Send permission
+
+### Steps
+
+```bash
+# 1. Clone the repository
+git clone <repo-url>
+cd launchmind
+
+# 2. Create virtual environment
+python -m venv venv
+venv\Scripts\activate  # Windows
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Configure environment
+copy .env.example .env
+# Edit .env — add your API keys
+
+# 5. Start Ollama (in a separate terminal)
+ollama serve
+
+# 6. Run the system
+python main.py
+```
