@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLingua</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        header, section, footer {
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #6b5b95, #8f7acc);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 50px 0;
+        }
+
+        .feature-card {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .feature-card i {
+            color: #6b5b95;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        /* User Personas/Testimonials Section */
+        .personas {
+            background-color: #f9f9f9;
+            padding: 50px 0;
+        }
+
+        .persona {
+            display: inline-block;
+            width: calc(33% - 40px);
+            margin: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .persona h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .persona p {
+            font-size: 1em;
+        }
+
+        /* Call to Action */
+        .cta {
+            background-color: #6b5b95;
+            color: white;
+            padding: 30px 0;
+        }
+
+        .cta a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background-color: #8f7acc;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .feature-card, .persona {
+                width: calc(50% - 40px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .feature-card, .persona {
+                width: 100%;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <div class="container">
+        <h1>CodeLingua</h1>
+        <p>An AI-powered CLI tool designed to simplify software maintenance by automatically generating semantic test cases and structured docstrings for legacy Python codebases.</p>
+    </div>
+</header>
+
+<section class="features container">
+    <div class="feature-card">
+        <i class="fas fa-brain"></i> <!-- Font Awesome icon -->
+        <h3>Natural Language Processing Integration</h3>
+        <p>Utilizes advanced NLP models like BERT and GPT-3 to analyze legacy Python code, enabling the generation of meaningful test cases and docstrings.</p>
+    </div>
+
+    <div class="feature-card">
+        <i class="fas fa-code"></i> <!-- Font Awesome icon -->
+        <h3>Automated Test Case Generation</h3>
+        <p>Generates comprehensive semantic test cases based on the functionality inferred from the code structure and comments, improving coverage and reliability.</p>
+    </div>
+
+    <div class="feature-card">
+        <i class="fas fa-file-alt"></i> <!-- Font Awesome icon -->
+        <h3>Structured Docstring Creation</h3>
+        <p>Creates well-structured docstrings that follow best practices and improve code readability, aiding developers in understanding and maintaining legacy systems.</p>
+    </div>
+
+    <div class="feature-card">
+        <i class="fas fa-cogs"></i> <!-- Font Awesome icon -->
+        <h3>CI/CD Integration Capabilities</h3>
+        <p>Seamlessly integrates with popular CI/CD tools like Jenkins and Travis CI to automate the testing and documentation process as part of regular development workflows.</p>
+    </div>
+
+    <div class="feature-card">
+        <i class="fas fa-cogs"></i> <!-- Font Awesome icon -->
+        <h3>Customizable Output Formats</h3>
+        <p>Provides options for customizing the format of generated test cases and docstrings to align with team-specific coding standards and practices.</p>
+    </div>
+</section>
+
+<section class="personas container">
+    <div class="persona">
+        <h3>Alex Johnson - Software Engineer</h3>
+        <p>Struggles with manually writing comprehensive test cases for complex, poorly documented legacy code, often leading to incomplete coverage.</p>
+    </div>
+
+    <div class="persona">
+        <h3>Taylor Smith - Quality Assurance Specialist</h3>
+        <p>Faces inefficiencies in verifying the correctness of existing code without proper documentation, slowing down testing cycles and increasing error rates.</p>
+    </div>
+
+    <div class="persona">
+        <h3>Jordan Lee - Project Manager</h3>
+        <p>Needs to ensure that development teams adhere to project timelines while maintaining high code quality, but lacks tools for quick verification of legacy systems.</p>
+    </div>
+</section>
+
+<section class="cta container">
+    <a href="#">Get Started with CodeLingua Today!</a>
+</section>
+
+<footer>
+    <div class="container">
+        &copy; 2023 CodeLingua. All rights reserved.
+    </div>
+</footer>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
