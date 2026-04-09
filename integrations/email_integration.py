@@ -10,6 +10,9 @@ Uses the SENDGRID_API_KEY environment variable for authentication.
 import logging
 import os
 
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
 logger = logging.getLogger(__name__)
 
 
@@ -40,5 +43,23 @@ class EmailIntegration:
         Returns:
             SendGrid API response info.
         """
-        # TODO: Use sendgrid.SendGridAPIClient to send mail
-        raise NotImplementedError
+        try:
+            message = Mail(
+                from_email=self.from_email,
+                to_emails=to_email,
+                subject=subject,
+                html_content=body_html,
+            )
+            if body_plain:
+                message.plain_text_content = body_plain
+
+            client = SendGridAPIClient(self.api_key)
+            response = client.send(message)
+            logger.info(f"Email sent to {to_email} (status={response.status_code})")
+            return {
+                "status_code": response.status_code,
+                "success": response.status_code in (200, 201, 202),
+            }
+        except Exception as e:
+            logger.error(f"Failed to send email: {e}")
+            return {"error": str(e), "success": False}

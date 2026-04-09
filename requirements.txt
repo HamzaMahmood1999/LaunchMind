@@ -15,5 +15,5 @@ sendgrid>=6.11.0
 # Data validation & message schemas
 pydantic>=2.5.0
 
-# LLM provider (OpenAI)
-openai>=1.12.0
+# LLM provider (Ollama - local)
+ollama>=0.4.0
