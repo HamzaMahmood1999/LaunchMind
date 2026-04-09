@@ -67,15 +67,14 @@ def main():
     except Exception as e:
         logger.error(f"Pipeline failed: {e}", exc_info=True)
     finally:
-        # Print full message history for audit
-        logger.info("=" * 60)
-        logger.info("FULL MESSAGE HISTORY")
-        logger.info("=" * 60)
-        for msg in bus.get_history():
-            logger.info(
-                f"  [{msg.message_type.value.upper()}] {msg.from_agent} -> {msg.to_agent} "
-                f"| keys: {list(msg.payload.keys())}"
-            )
+        # Print full message history summary for audit
+        history = bus.get_history()
+        print(f"\n{'#'*60}")
+        print(f"  FULL MESSAGE HISTORY ({len(history)} messages)")
+        print(f"{'#'*60}")
+        for i, msg in enumerate(history, 1):
+            print(f"  {i}. [{msg.message_type.value.upper():>18}] {msg.from_agent:>10} -> {msg.to_agent:<10} | keys: {list(msg.payload.keys())}")
+        print(f"{'#'*60}\n")
         bus.close()
 
     logger.info("LaunchMind pipeline complete.")

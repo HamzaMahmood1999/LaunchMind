@@ -89,4 +89,18 @@ class ProductAgent:
             parent_message_id=msg.message_id,
         )
         self.message_bus.send(result_msg)
-        logger.info("Product agent sent spec to CEO.")
+
+        # Send confirmation message back to CEO
+        confirmation_msg = self.message_bus.create_message(
+            from_agent=self.name,
+            to_agent="ceo",
+            message_type="confirmation",
+            payload={
+                "status": "spec_ready",
+                "product_name": spec.get("product_name", "unknown"),
+                "message": f"Product specification for '{spec.get('product_name', 'unknown')}' is ready for review.",
+            },
+            parent_message_id=msg.message_id,
+        )
+        self.message_bus.send(confirmation_msg)
+        logger.info("Product agent sent spec and confirmation to CEO.")
