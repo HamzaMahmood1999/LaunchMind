@@ -212,9 +212,22 @@ class MessageBus:
                 ),
             )
             self._conn.commit()
+
+            # Real-time JSON output for demo visibility
+            print(f"\n{'='*60}")
+            print(f"  MESSAGE: {message.from_agent} -> {message.to_agent} [{message.message_type.value.upper()}]")
+            print(f"{'='*60}")
+            display = message.to_dict()
+            # Truncate large payloads for readability
+            display_payload = {k: (v[:200] + "..." if isinstance(v, str) and len(v) > 200 else v)
+                               for k, v in display.get("payload", {}).items()}
+            display["payload"] = display_payload
+            print(json.dumps(display, indent=2))
+            print(f"{'='*60}\n")
+
             logger.info(
-                f"📤 Message sent: {message.from_agent} → {message.to_agent} "
-                f"[{message.message_type.value}] (id={message.message_id[:8]}…)"
+                f"Message sent: {message.from_agent} -> {message.to_agent} "
+                f"[{message.message_type.value}] (id={message.message_id[:8]}...)"
             )
         except sqlite3.IntegrityError:
             logger.warning(
@@ -232,7 +245,6 @@ class MessageBus:
             List of AgentMessage objects (may be empty).
         """
         agent_name = agent_name.strip().lower()
-        # QA agent uses thread context to correlate PR review comments with task messages
         cursor = self._conn.execute(
             """
             SELECT message_id, from_agent, to_agent, message_type,
@@ -282,7 +294,6 @@ class MessageBus:
         Returns:
             List of AgentMessage objects in chronological order.
         """
-        # QA agent uses thread context to correlate PR review comments with task messages
         cursor = self._conn.execute(
             """
             SELECT message_id, from_agent, to_agent, message_type,
@@ -315,7 +326,6 @@ class MessageBus:
         Returns:
             List of all AgentMessage objects in chronological order.
         """
-        # QA agent uses thread context to correlate PR review comments with task messages
         cursor = self._conn.execute(
             """
             SELECT message_id, from_agent, to_agent, message_type,

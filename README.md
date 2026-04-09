@@ -1,84 +1,142 @@
 # LaunchMind — Multi-Agent Startup System
 
-An autonomous multi-agent system that takes a startup idea and runs the full launch pipeline: product spec → landing page → marketing copy → QA review — with real integrations to GitHub, Slack, and SendGrid.
+## Startup Idea
 
-## Quick Start
+**PyTestGen** is an AI-powered Python CLI tool that leverages natural language processing to automatically generate semantic test cases and structured docstrings for legacy codebases. It targets development teams maintaining aging Python projects who need better test coverage and documentation without the manual overhead. Developers would pay for it because it dramatically reduces the time spent writing tests and docs for inherited code.
 
-```bash
-# 1. Create virtual environment
-python -m venv venv
-venv\Scripts\activate  # Windows
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Configure environment
-copy .env.example .env
-# Edit .env with your API keys
-
-# 4. Run the system
-python main.py
-```
-
-## Architecture
+## Agent Architecture
 
 ```
-main.py                  ← Entry point & orchestrator
-├── core/
-│   └── message_bus.py   ← SQLite-backed JSON message passing
-├── agents/
-│   ├── ceo_agent.py     ← Orchestrates tasks & feedback loop
-│   ├── product_agent.py ← Generates product specs
-│   ├── engineer_agent.py← Builds landing page & GitHub ops
-│   ├── marketing_agent.py← Copy, email, Slack posts
-│   └── qa_agent.py      ← Reviews & pass/fail verdicts
-└── integrations/
-    ├── github_integration.py
-    ├── slack_integration.py
-    └── email_integration.py
+                          ┌─────────────┐
+                          │  CEO Agent  │ (Orchestrator)
+                          │  LLM x3+   │
+                          └──────┬──────┘
+                   ┌─────────────┼─────────────┐
+                   │             │             │
+                   ▼             ▼             ▼
+           ┌──────────┐  ┌───────────┐  ┌───────────┐
+           │ Product  │  │ Engineer  │  │ Marketing │
+           │  Agent   │  │  Agent    │  │  Agent    │
+           │  LLM x1  │  │  LLM x3  │  │  LLM x1  │
+           └──────────┘  └───────────┘  └───────────┘
+                                │             │
+                          ┌─────┘             │
+                          ▼                   ▼
+                   ┌──────────┐        ┌───────────┐
+                   │  GitHub  │        │   Slack   │
+                   │  API     │        │ + Email   │
+                   └──────────┘        └───────────┘
+                          │
+                          ▼
+                   ┌──────────┐
+                   │ QA Agent │ (Reviews PR + Copy)
+                   │  LLM x1  │
+                   └──────────┘
 ```
 
-## Required API Keys
+**Communication Flow (via SQLite-backed Message Bus):**
 
-| Variable | Service |
-|---|---|
-| `OPENAI_API_KEY` | OpenAI LLM |
-| `GITHUB_TOKEN` | GitHub API |
-| `SLACK_BOT_TOKEN` | Slack Web API |
-| `SENDGRID_API_KEY` | SendGrid Email |
+1. **CEO** decomposes the startup idea into tasks (LLM call #1)
+2. **CEO** sends task to **Product Agent** via message bus
+3. **Product Agent** generates structured spec (LLM) and sends result + confirmation to CEO
+4. **CEO** reviews the spec using LLM reasoning (LLM call #2) — rejects first draft with specific feedback
+5. **Product Agent** revises spec based on feedback (feedback loop #1)
+6. **CEO** approves revised spec, forwards to **Engineer** and **Marketing**
+7. **Engineer** generates HTML landing page (LLM), creates GitHub issue, branch, commit, and PR
+8. **Marketing** generates copy (LLM), sends email via SendGrid, posts to Slack
+9. **CEO** sends all outputs to **QA Agent**
+10. **QA Agent** reviews HTML + copy (LLM), posts PR review comments, sends pass/fail report
+11. If QA fails, **CEO** sends revision requests to failing agents (feedback loop #2)
+12. **CEO** posts final launch summary to Slack (LLM call #3)
 
-See `.env.example` for the full list.
+All inter-agent messages are structured JSON with: `message_id`, `from_agent`, `to_agent`, `message_type`, `payload`, `timestamp`, `parent_message_id`.
 
 ## Setup Instructions
 
 ### Prerequisites
 - Python 3.11+
-- [Ollama](https://ollama.ai/) running locally with a model pulled (e.g. `ollama pull phi4`)
-- GitHub Personal Access Token (PAT) with `repo` + `workflow` scopes
-- Slack Bot Token (`xoxb-...`) with `chat:write`, `channels:read`, `channels:join` scopes
-- SendGrid API key with Mail Send permission
+- [Ollama](https://ollama.ai) installed and running with a model (e.g., `phi4:14b`)
+- GitHub Personal Access Token
+- Slack Bot Token (workspace with `#launches` channel)
+- SendGrid API Key
 
-### Steps
+### Installation
 
 ```bash
 # 1. Clone the repository
-git clone <repo-url>
-cd launchmind
+git clone https://github.com/HamzaMahmood1999/LaunchMind.git
+cd LaunchMind
 
-# 2. Create virtual environment
+# 2. Create and activate virtual environment
 python -m venv venv
-venv\Scripts\activate  # Windows
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # macOS/Linux
 
 # 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Configure environment
-copy .env.example .env
-# Edit .env — add your API keys
+# 4. Configure environment variables
+copy .env.example .env       # Windows
+# cp .env.example .env       # macOS/Linux
+# Then edit .env with your actual API keys
 
-# 5. Start Ollama (in a separate terminal)
-ollama serve
+# 5. Ensure Ollama is running with your model
+ollama run phi4:14b
 
 # 6. Run the system
 python main.py
+```
+
+### Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `OLLAMA_BASE_URL` | Yes | Ollama API endpoint (default: `http://localhost:11434/v1`) |
+| `OLLAMA_MODEL` | Yes | Model name (e.g., `phi4:14b`) |
+| `GITHUB_TOKEN` | Yes | GitHub Personal Access Token with `repo` scope |
+| `GITHUB_REPO_OWNER` | Yes | GitHub repository owner |
+| `GITHUB_REPO_NAME` | Yes | GitHub repository name |
+| `SLACK_BOT_TOKEN` | Yes | Slack Bot User OAuth Token (`xoxb-...`) |
+| `SLACK_CHANNEL` | No | Slack channel (default: `#launches`) |
+| `SENDGRID_API_KEY` | Yes | SendGrid API key for email sending |
+| `SENDGRID_FROM_EMAIL` | Yes | Verified sender email address |
+| `EMAIL_RECIPIENT` | Yes | Test email recipient |
+
+## Platform Integrations
+
+| Platform | Agent | Actions |
+|---|---|---|
+| **GitHub** | Engineer | Creates issue, creates feature branch, commits HTML landing page, opens pull request |
+| **GitHub** | QA | Posts inline review comments on the pull request (at least 2) |
+| **Slack** | Marketing | Posts product launch announcement with Block Kit formatting to `#launches` |
+| **Slack** | CEO | Posts final pipeline summary to `#launches` |
+| **SendGrid** | Marketing | Sends LLM-generated cold outreach email to test recipient |
+
+## Evidence Links
+
+- **GitHub PR by Engineer Agent:** https://github.com/HamzaMahmood1999/LaunchMind/pull/6
+- **GitHub Issue by Engineer Agent:** https://github.com/HamzaMahmood1999/LaunchMind/issues/5
+
+## Project Structure
+
+```
+LaunchMind/
+├── main.py                      # Entry point — runs the full pipeline
+├── core/
+│   ├── message_bus.py           # SQLite-backed message bus (Pydantic-validated)
+│   └── llm.py                   # Shared Ollama LLM helper with retry logic
+├── agents/
+│   ├── ceo_agent.py             # Orchestrator with feedback loops
+│   ├── product_agent.py         # Product specification generator
+│   ├── engineer_agent.py        # HTML generator + GitHub workflow
+│   ├── marketing_agent.py       # Copy generator + email + Slack
+│   └── qa_agent.py              # Reviewer + PR comments
+├── integrations/
+│   ├── github_integration.py    # GitHub REST API v3 wrapper
+│   ├── slack_integration.py     # Slack Web API + Block Kit
+│   └── email_integration.py     # SendGrid email sender
+├── outputs/                     # Generated landing page HTML
+├── requirements.txt
+├── .env.example
+└── .gitignore
 ```
