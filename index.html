@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            line-height: 1.6;
             color: #333;
         }
 
@@ -20,118 +21,71 @@
         }
 
         header, section, footer {
-            text-align: center;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #6b5b95, #8f7acc);
-            color: white;
-            padding: 60px 0;
+            padding: 40px 0;
         }
 
         .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            color: #fff;
         }
 
         .hero p {
-            font-size: 1.2em;
-            margin-bottom: 40px;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #ddd;
         }
 
-        /* Features Section */
-        .features {
-            padding: 50px 0;
+        .features, .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
-        .feature-card {
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
-            padding: 30px;
+        .feature-card, .testimonial-card {
+            background: #f9f9f9;
             border-radius: 8px;
-            max-width: 400px;
-            display: inline-block;
-            vertical-align: top;
-        }
-
-        .feature-card i {
-            color: #6b5b95;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
-
-        /* User Personas/Testimonials Section */
-        .personas {
-            background-color: #f9f9f9;
-            padding: 50px 0;
-        }
-
-        .persona {
-            display: inline-block;
-            width: calc(33% - 40px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            border-radius: 8px;
-            background-color: #fff;
+            padding: 20px;
+            flex-basis: calc(33% - 40px);
         }
 
-        .persona h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
+        .feature-card h3, .testimonial-card p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
         }
 
-        .persona p {
-            font-size: 1em;
-        }
-
-        /* Call to Action */
-        .cta {
-            background-color: #6b5b95;
-            color: white;
-            padding: 30px 0;
-        }
-
-        .cta a {
+        .cta-button {
             display: inline-block;
-            text-decoration: none;
+            background: linear-gradient(to right, #4b6cb7, #182848);
             color: white;
-            background-color: #8f7acc;
-            padding: 15px 40px;
+            padding: 10px 30px;
             border-radius: 5px;
-            font-size: 1.2em;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-top: 40px;
         }
 
-        /* Footer */
         footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
         }
 
-        /* Media Queries */
         @media (max-width: 768px) {
-            .feature-card, .persona {
-                width: calc(50% - 40px);
+            .feature-card, .testimonial-card {
+                flex-basis: calc(50% - 40px);
             }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2em;
+            .features, .testimonials {
+                flex-direction: column;
+                align-items: center;
             }
-
-            .feature-card, .persona {
-                width: 100%;
-                margin: 20px 0;
+            .feature-card, .testimonial-card {
+                flex-basis: 100%;
             }
         }
     </style>
@@ -141,61 +95,46 @@
 <header class="hero">
     <div class="container">
         <h1>CodeLingua</h1>
-        <p>An AI-powered CLI tool designed to simplify software maintenance by automatically generating semantic test cases and structured docstrings for legacy Python codebases.</p>
+        <p>AI-powered CLI tool for seamless software maintenance</p>
+        <a href="#" class="cta-button">Get Started</a>
     </div>
 </header>
 
 <section class="features container">
+    <h2>Key Features</h2>
     <div class="feature-card">
-        <i class="fas fa-brain"></i> <!-- Font Awesome icon -->
         <h3>Natural Language Processing Integration</h3>
-        <p>Utilizes advanced NLP models like BERT and GPT-3 to analyze legacy Python code, enabling the generation of meaningful test cases and docstrings.</p>
+        <p>Utilizes advanced NLP models like BERT and GPT-3 to analyze legacy Python code.</p>
     </div>
-
     <div class="feature-card">
-        <i class="fas fa-code"></i> <!-- Font Awesome icon -->
         <h3>Automated Test Case Generation</h3>
-        <p>Generates comprehensive semantic test cases based on the functionality inferred from the code structure and comments, improving coverage and reliability.</p>
+        <p>Generates comprehensive semantic test cases based on the functionality inferred from the code structure and comments.</p>
     </div>
-
     <div class="feature-card">
-        <i class="fas fa-file-alt"></i> <!-- Font Awesome icon -->
         <h3>Structured Docstring Creation</h3>
-        <p>Creates well-structured docstrings that follow best practices and improve code readability, aiding developers in understanding and maintaining legacy systems.</p>
+        <p>Creates well-structured docstrings that follow best practices and improve code readability.</p>
     </div>
-
     <div class="feature-card">
-        <i class="fas fa-cogs"></i> <!-- Font Awesome icon -->
         <h3>CI/CD Integration Capabilities</h3>
-        <p>Seamlessly integrates with popular CI/CD tools like Jenkins and Travis CI to automate the testing and documentation process as part of regular development workflows.</p>
+        <p>Seamlessly integrates with popular CI/CD tools like Jenkins and Travis CI to automate the testing and documentation process.</p>
     </div>
-
     <div class="feature-card">
-        <i class="fas fa-cogs"></i> <!-- Font Awesome icon -->
         <h3>Customizable Output Formats</h3>
-        <p>Provides options for customizing the format of generated test cases and docstrings to align with team-specific coding standards and practices.</p>
+        <p>Provides options for customizing the format of generated test cases and docstrings.</p>
     </div>
 </section>
 
-<section class="personas container">
-    <div class="persona">
-        <h3>Alex Johnson - Software Engineer</h3>
-        <p>Struggles with manually writing comprehensive test cases for complex, poorly documented legacy code, often leading to incomplete coverage.</p>
+<section class="testimonials container">
+    <h2>User Testimonials</h2>
+    <div class="testimonial-card">
+        <p>"CodeLingua saves me hours on writing test cases for complex legacy code." - Alex Johnson, Software Engineer</p>
     </div>
-
-    <div class="persona">
-        <h3>Taylor Smith - Quality Assurance Specialist</h3>
-        <p>Faces inefficiencies in verifying the correctness of existing code without proper documentation, slowing down testing cycles and increasing error rates.</p>
+    <div class="testimonial-card">
+        <p>"With CodeLingua, verifying correctness is faster and more efficient, reducing testing errors significantly." - Taylor Smith, Quality Assurance Specialist</p>
     </div>
-
-    <div class="persona">
-        <h3>Jordan Lee - Project Manager</h3>
-        <p>Needs to ensure that development teams adhere to project timelines while maintaining high code quality, but lacks tools for quick verification of legacy systems.</p>
+    <div class="testimonial-card">
+        <p>"Integrating CodeLingua into our CI/CD pipeline ensures high-quality standards are met within project timelines." - Jordan Lee, Project Manager</p>
     </div>
-</section>
-
-<section class="cta container">
-    <a href="#">Get Started with CodeLingua Today!</a>
 </section>
 
 <footer>
@@ -203,8 +142,6 @@
         &copy; 2023 CodeLingua. All rights reserved.
     </div>
 </footer>
-
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
