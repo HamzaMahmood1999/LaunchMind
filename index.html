@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSense Pro</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .hero-section {
+            background: linear-gradient(145deg, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .features-section, .testimonials-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .feature-card {
+            display: inline-block;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            width: calc(33% - 40px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #2575fc;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            margin-top: 40px;
+        }
+
+        .testimonials-card {
+            display: inline-block;
+            background: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            width: calc(50% - 40px);
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-card, .testimonials-card {
+                width: calc(100% - 40px);
+            }
+
+            .features-section, .testimonials-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <h1 class="hero-title">CodeSense Pro</h1>
+        <p class="hero-subtitle">The ultimate AI-powered coding assistant that boosts your productivity and efficiency.</p>
+        <a href="#" class="cta-button">Get Started Now</a>
+    </section>
+
+    <section class="features-section">
+        <h2>Key Features</h2>
+        <div class="feature-card">
+            <span class="feature-icon">&#128065;</span>
+            <h3>Syntax Highlighting</h3>
+            <p>Enhance readability with smart syntax highlighting.</p>
+        </div>
+
+        <div class="feature-card">
+            <span class="feature-icon">&#128161;</span>
+            <h3>Code Autocompletion</h3>
+            <p>Speed up your coding with intelligent autocompletions.</p>
+        </div>
+
+        <div class="feature-card">
+            <span class="feature-icon">&#128187;</span>
+            <h3>Error Detection</h3>
+            <p>Identify and fix errors on the fly to ensure code quality.</p>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <h2>User Testimonials</h2>
+        <div class="testimonials-card">
+            <p>"CodeSense Pro has revolutionized my coding workflow. Highly recommend!" - Jane Doe, Developer</p>
+        </div>
+
+        <div class="testimonials-card">
+            <p>"A game-changer in productivity! CodeSense Pro is a must-have tool for any developer." - John Smith, Software Engineer</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        &copy; 2023 CodeSense Pro. All rights reserved.
+    </footer>
+
+</body>
+</html>
