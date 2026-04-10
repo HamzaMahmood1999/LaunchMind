@@ -1,146 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeLingua</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            line-height: 1.6;
-            color: #333;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyTestGenAI</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      line-height: 1.6;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 20px;
-        }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
 
-        header, section, footer {
-            padding: 40px 0;
-        }
+    header, section, footer {
+      text-align: center;
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            color: #fff;
-        }
+    /* Hero Section */
+    #hero {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      padding: 80px 20px;
+    }
 
-        .hero p {
-            font-size: 1.5rem;
-            margin-top: 20px;
-            color: #ddd;
-        }
+    #hero h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
 
-        .features, .testimonials {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+    #hero p {
+      font-size: 1.5em;
+      max-width: 600px;
+      margin: auto;
+    }
 
-        .feature-card, .testimonial-card {
-            background: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            padding: 20px;
-            flex-basis: calc(33% - 40px);
-        }
+    /* Features Section */
+    .feature-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 300px;
+    }
 
-        .feature-card h3, .testimonial-card p {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
+    .feature-card img {
+      width: 50px;
+      height: 50px;
+    }
 
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(to right, #4b6cb7, #182848);
-            color: white;
-            padding: 10px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            margin-top: 40px;
-        }
+    .features-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
+    /* User Personas/Testimonials Section */
+    #testimonials {
+      background: #f9f9f9;
+      padding: 40px 20px;
+    }
 
-        @media (max-width: 768px) {
-            .feature-card, .testimonial-card {
-                flex-basis: calc(50% - 40px);
-            }
-        }
+    .testimonial-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 10px auto;
+      max-width: 300px;
+      padding: 20px;
+    }
 
-        @media (max-width: 480px) {
-            .features, .testimonials {
-                flex-direction: column;
-                align-items: center;
-            }
-            .feature-card, .testimonial-card {
-                flex-basis: 100%;
-            }
-        }
-    </style>
+    .testimonial-card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Call to Action */
+    .cta-button {
+      display: inline-block;
+      background: #2575fc;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-top: 40px;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: white;
+      padding: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .features-grid {
+        flex-direction: column;
+      }
+      
+      #hero h1 {
+        font-size: 2.5em;
+      }
+
+      #hero p {
+        font-size: 1.2em;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header class="hero">
-    <div class="container">
-        <h1>CodeLingua</h1>
-        <p>AI-powered CLI tool for seamless software maintenance</p>
-        <a href="#" class="cta-button">Get Started</a>
-    </div>
+<header id="hero">
+  <div class="container">
+    <h1>PyTestGenAI</h1>
+    <p>Use advanced NLP algorithms to automatically generate comprehensive test cases and structured docstrings, reducing manual coding time by up to 50% for Python developers working on legacy systems.</p>
+  </div>
 </header>
 
-<section class="features container">
-    <h2>Key Features</h2>
+<section id="features">
+  <div class="container features-grid">
+
     <div class="feature-card">
-        <h3>Natural Language Processing Integration</h3>
-        <p>Utilizes advanced NLP models like BERT and GPT-3 to analyze legacy Python code.</p>
+      <img src="https://via.placeholder.com/50" alt="NLP Icon">
+      <h3>NLP-Driven Test Case Generation</h3>
+      <p>Utilizes a proprietary NLP model trained specifically for Python syntax to automatically generate meaningful test cases based on existing code semantics.</p>
     </div>
+
     <div class="feature-card">
-        <h3>Automated Test Case Generation</h3>
-        <p>Generates comprehensive semantic test cases based on the functionality inferred from the code structure and comments.</p>
+      <img src="https://via.placeholder.com/50" alt="Legacy Icon">
+      <h3>Legacy Codebase Compatibility</h3>
+      <p>Supports diverse legacy systems with seamless integration, intelligently parsing and analyzing older Python versions and unique coding styles without performance degradation.</p>
     </div>
+
     <div class="feature-card">
-        <h3>Structured Docstring Creation</h3>
-        <p>Creates well-structured docstrings that follow best practices and improve code readability.</p>
+      <img src="https://via.placeholder.com/50" alt="Docstring Icon">
+      <h3>Automatic Docstring Generation</h3>
+      <p>Generates structured docstrings that accurately describe function signatures, parameters, and return values, improving code readability and maintainability.</p>
     </div>
+
     <div class="feature-card">
-        <h3>CI/CD Integration Capabilities</h3>
-        <p>Seamlessly integrates with popular CI/CD tools like Jenkins and Travis CI to automate the testing and documentation process.</p>
+      <img src="https://via.placeholder.com/50" alt="Custom Icon">
+      <h3>Customizable Output Formats</h3>
+      <p>Allows users to choose from multiple output formats such as PyTest or unittest for test cases, catering to different team practices and preferences.</p>
     </div>
+
     <div class="feature-card">
-        <h3>Customizable Output Formats</h3>
-        <p>Provides options for customizing the format of generated test cases and docstrings.</p>
+      <img src="https://via.placeholder.com/50" alt="CI/CD Icon">
+      <h3>Integration with CI/CD Pipelines</h3>
+      <p>Facilitates easy integration into existing Continuous Integration/Continuous Deployment pipelines for automated testing upon code commits.</p>
     </div>
+
+  </div>
 </section>
 
-<section class="testimonials container">
-    <h2>User Testimonials</h2>
+<section id="testimonials">
+  <div class="container">
+
     <div class="testimonial-card">
-        <p>"CodeLingua saves me hours on writing test cases for complex legacy code." - Alex Johnson, Software Engineer</p>
+      <img src="https://via.placeholder.com/50" alt="Alice's Avatar">
+      <h4>Alice, Software Developer</h4>
+      <p>"Struggles with maintaining and expanding legacy codebases that lack proper documentation and test coverage, making it difficult to ensure reliability."</p>
     </div>
+
     <div class="testimonial-card">
-        <p>"With CodeLingua, verifying correctness is faster and more efficient, reducing testing errors significantly." - Taylor Smith, Quality Assurance Specialist</p>
+      <img src="https://via.placeholder.com/50" alt="Bob's Avatar">
+      <h4>Bob, Quality Assurance Engineer</h4>
+      <p>"Overwhelmed by the increasing workload of manually creating detailed test cases for complex Python projects with insufficient initial documentation."</p>
     </div>
+
     <div class="testimonial-card">
-        <p>"Integrating CodeLingua into our CI/CD pipeline ensures high-quality standards are met within project timelines." - Jordan Lee, Project Manager</p>
+      <img src="https://via.placeholder.com/50" alt="Carol's Avatar">
+      <h4>Carol, Technical Lead</h4>
+      <p>"Finds it challenging to onboard new team members quickly due to outdated and poorly documented legacy code, leading to extended onboarding periods."</p>
     </div>
+
+  </div>
+</section>
+
+<section class="cta-container">
+  <a href="#" class="cta-button">Get Started with PyTestGenAI Today!</a>
 </section>
 
 <footer>
-    <div class="container">
-        &copy; 2023 CodeLingua. All rights reserved.
-    </div>
+  <div class="container">
+    &copy; 2023 PyTestGenAI. All rights reserved.
+  </div>
 </footer>
 
 </body>
