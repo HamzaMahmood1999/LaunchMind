@@ -1,200 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PyTestGenAI</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    header, section, footer {
-      text-align: center;
-    }
-
-    /* Hero Section */
-    #hero {
-      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-      color: white;
-      padding: 80px 20px;
-    }
-
-    #hero h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-    }
-
-    #hero p {
-      font-size: 1.5em;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    /* Features Section */
-    .feature-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 300px;
-    }
-
-    .feature-card img {
-      width: 50px;
-      height: 50px;
-    }
-
-    .features-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* User Personas/Testimonials Section */
-    #testimonials {
-      background: #f9f9f9;
-      padding: 40px 20px;
-    }
-
-    .testimonial-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin: 10px auto;
-      max-width: 300px;
-      padding: 20px;
-    }
-
-    .testimonial-card img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    /* Call to Action */
-    .cta-button {
-      display: inline-block;
-      background: #2575fc;
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      border-radius: 8px;
-      margin-top: 40px;
-      font-weight: bold;
-    }
-
-    /* Footer */
-    footer {
-      background: #333;
-      color: white;
-      padding: 20px 0;
-    }
-
-    @media (max-width: 768px) {
-      .features-grid {
-        flex-direction: column;
-      }
-      
-      #hero h1 {
-        font-size: 2.5em;
-      }
-
-      #hero p {
-        font-size: 1.2em;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyTestGenAI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        header, footer {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: linear-gradient(135deg, #a777e3, #6e8efb);
+            text-align: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            max-width: 600px;
+            margin: auto;
+        }
+        .features, .testimonials {
+            padding: 60px 0;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-card h2 {
+            font-size: 1.8rem;
+            margin: 20px;
+        }
+        .feature-card p {
+            padding: 0 20px 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border-radius: 5px;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+        .cta-button:hover {
+            background: linear-gradient(135deg, #a777e3, #6e8efb);
+        }
+        .testimonial {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding: 20px 0;
+        }
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .testimonial p {
+            font-style: italic;
+        }
+        footer p {
+            margin: 10px 0;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .feature-card, .testimonial {
+                flex-direction: column;
+                align-items: center;
+            }
+            .testimonial img {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header id="hero">
-  <div class="container">
-    <h1>PyTestGenAI</h1>
-    <p>Use advanced NLP algorithms to automatically generate comprehensive test cases and structured docstrings, reducing manual coding time by up to 50% for Python developers working on legacy systems.</p>
-  </div>
+<header>
+    <div class="container">
+        <h1>PyTestGenAI</h1>
+        <p>The ultimate solution for generating test cases and docstrings in Python, saving you up to 50% of your coding time.</p>
+    </div>
 </header>
 
-<section id="features">
-  <div class="container features-grid">
-
-    <div class="feature-card">
-      <img src="https://via.placeholder.com/50" alt="NLP Icon">
-      <h3>NLP-Driven Test Case Generation</h3>
-      <p>Utilizes a proprietary NLP model trained specifically for Python syntax to automatically generate meaningful test cases based on existing code semantics.</p>
+<section class="hero">
+    <div class="container">
+        <h1>PyTestGenAI</h1>
+        <p>Transform how you handle legacy codebases with PyTestGenAI. Automatically generate test cases and structured docstrings, reducing manual coding time by up to 50%.</p>
     </div>
-
-    <div class="feature-card">
-      <img src="https://via.placeholder.com/50" alt="Legacy Icon">
-      <h3>Legacy Codebase Compatibility</h3>
-      <p>Supports diverse legacy systems with seamless integration, intelligently parsing and analyzing older Python versions and unique coding styles without performance degradation.</p>
-    </div>
-
-    <div class="feature-card">
-      <img src="https://via.placeholder.com/50" alt="Docstring Icon">
-      <h3>Automatic Docstring Generation</h3>
-      <p>Generates structured docstrings that accurately describe function signatures, parameters, and return values, improving code readability and maintainability.</p>
-    </div>
-
-    <div class="feature-card">
-      <img src="https://via.placeholder.com/50" alt="Custom Icon">
-      <h3>Customizable Output Formats</h3>
-      <p>Allows users to choose from multiple output formats such as PyTest or unittest for test cases, catering to different team practices and preferences.</p>
-    </div>
-
-    <div class="feature-card">
-      <img src="https://via.placeholder.com/50" alt="CI/CD Icon">
-      <h3>Integration with CI/CD Pipelines</h3>
-      <p>Facilitates easy integration into existing Continuous Integration/Continuous Deployment pipelines for automated testing upon code commits.</p>
-    </div>
-
-  </div>
 </section>
 
-<section id="testimonials">
-  <div class="container">
-
-    <div class="testimonial-card">
-      <img src="https://via.placeholder.com/50" alt="Alice's Avatar">
-      <h4>Alice, Software Developer</h4>
-      <p>"Struggles with maintaining and expanding legacy codebases that lack proper documentation and test coverage, making it difficult to ensure reliability."</p>
+<section class="features container">
+    <h2>Key Features</h2>
+    <div class="feature-card">
+        <img src="icons/test-case-icon.png" alt="Test Case Icon">
+        <h2>NLP-Driven Test Case Generation</h2>
+        <p>Utilizes a proprietary NLP model trained specifically for Python syntax to automatically generate meaningful test cases based on existing code semantics.</p>
     </div>
-
-    <div class="testimonial-card">
-      <img src="https://via.placeholder.com/50" alt="Bob's Avatar">
-      <h4>Bob, Quality Assurance Engineer</h4>
-      <p>"Overwhelmed by the increasing workload of manually creating detailed test cases for complex Python projects with insufficient initial documentation."</p>
+    <div class="feature-card">
+        <img src="icons/legacy-code-icon.png" alt="Legacy Code Icon">
+        <h2>Legacy Codebase Compatibility</h2>
+        <p>Supports diverse legacy systems with seamless integration, intelligently parsing and analyzing older Python versions and unique coding styles without performance degradation.</p>
     </div>
-
-    <div class="testimonial-card">
-      <img src="https://via.placeholder.com/50" alt="Carol's Avatar">
-      <h4>Carol, Technical Lead</h4>
-      <p>"Finds it challenging to onboard new team members quickly due to outdated and poorly documented legacy code, leading to extended onboarding periods."</p>
+    <div class="feature-card">
+        <img src="icons/docstring-icon.png" alt="Docstring Icon">
+        <h2>Automatic Docstring Generation</h2>
+        <p>Generates structured docstrings that accurately describe function signatures, parameters, and return values, improving code readability and maintainability.</p>
     </div>
-
-  </div>
+    <div class="feature-card">
+        <img src="icons/customizable-icon.png" alt="Customizable Icon">
+        <h2>Customizable Output Formats</h2>
+        <p>Allows users to choose from multiple output formats such as PyTest or unittest for test cases, catering to different team practices and preferences.</p>
+    </div>
+    <div class="feature-card">
+        <img src="icons/ci-cd-icon.png" alt="CI/CD Icon">
+        <h2>Integration with CI/CD Pipelines</h2>
+        <p>Facilitates easy integration into existing Continuous Integration/Continuous Deployment pipelines for automated testing upon code commits.</p>
+    </div>
 </section>
 
-<section class="cta-container">
-  <a href="#" class="cta-button">Get Started with PyTestGenAI Today!</a>
+<section class="testimonials container">
+    <h2>User Testimonials</h2>
+    <div class="testimonial">
+        <img src="images/alice.png" alt="Alice's Profile Picture">
+        <p>"As a Developer, I find the NLP-Driven Test Case Generation feature incredibly useful for analyzing my existing code and suggesting relevant test cases. It helps ensure comprehensive coverage without manual effort." - Alice, Software Developer</p>
+    </div>
+    <div class="testimonial">
+        <img src="images/bob.png" alt="Bob's Profile Picture">
+        <p>"As a Quality Assurance Engineer, the Automatic Docstring Generation feature saves me time by quickly producing documentation for legacy functions. It helps new team members understand the system more efficiently." - Bob, QA Engineer</p>
+    </div>
+    <div class="testimonial">
+        <img src="images/carol.png" alt="Carol's Profile Picture">
+        <p>"As a Technical Lead, integrating PyTestGenAI into our CI/CD pipelines has streamlined our testing processes and reduced the time needed for code reviews by automatically generating test cases." - Carol, Technical Lead</p>
+    </div>
+</section>
+
+<section class="container">
+    <a href="#get-started" class="cta-button">Get Started Now</a>
 </section>
 
 <footer>
-  <div class="container">
-    &copy; 2023 PyTestGenAI. All rights reserved.
-  </div>
+    <div class="container">
+        <p>&copy; 2023 PyTestGenAI. All rights reserved.</p>
+    </div>
 </footer>
 
 </body>
