@@ -14,7 +14,7 @@ import ollama
 logger = logging.getLogger(__name__)
 
 MODEL = os.getenv("OLLAMA_MODEL", "phi4:14b")
-MAX_RETRIES = 2
+MAX_RETRIES = 2  # retry up to 2 times on failure
 
 
 def call_llm(system_prompt: str, user_prompt: str, json_mode: bool = True) -> str | dict:
@@ -73,7 +73,7 @@ def _parse_json(text: str) -> dict:
     """Parse JSON from LLM response, handling common formatting issues."""
     text = text.strip()
 
-    # Remove markdown code fences if present
+    # Strip markdown code fences if the model wraps the response
     if text.startswith("```"):
         lines = text.split("\n")
         text = "\n".join(lines[1:])
@@ -95,7 +95,7 @@ def _parse_json(text: str) -> dict:
         except json.JSONDecodeError:
             pass
 
-    # Try fixing common issues (trailing commas, unclosed strings)
+    # Fix trailing commas and similar common JSON issues
     cleaned = re.sub(r',\s*}', '}', text)
     cleaned = re.sub(r',\s*]', ']', cleaned)
     try:
