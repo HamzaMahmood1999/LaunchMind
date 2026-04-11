@@ -120,7 +120,7 @@ class MessageBus:
         logger.info(f"MessageBus initialized (db={db_path}).")
 
     def _create_tables(self) -> None:
-        """Create the messages table if it doesn't exist."""
+        """Create the messages table and indexes if they don't already exist."""
         self._conn.execute("""
             CREATE TABLE IF NOT EXISTS messages (
                 id              INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -269,7 +269,7 @@ class MessageBus:
             )
             messages.append(msg)
 
-        # Mark all fetched messages as read
+        # Mark fetched messages as read so they aren't returned again
         if messages:
             ids = [m.message_id for m in messages]
             placeholders = ",".join("?" for _ in ids)
