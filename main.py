@@ -39,7 +39,7 @@ def main():
     # Load environment variables
     load_dotenv()
 
-    # Validate critical env vars
+    # Validate that required env vars are set before proceeding
     required_vars = ["OLLAMA_BASE_URL", "OLLAMA_MODEL"]
     missing = [v for v in required_vars if not os.getenv(v)]
     if missing:
@@ -49,11 +49,11 @@ def main():
     # Create outputs directory
     os.makedirs("outputs", exist_ok=True)
 
-    # Initialize the shared message bus (SQLite-backed)
+    # Initialize the shared message bus (backed by SQLite)
     bus = MessageBus()
     logger.info("Message bus initialized.")
 
-    # Initialize all agents with the shared message bus
+    # Create all agents with the shared bus instance
     product = ProductAgent(bus)
     engineer = EngineerAgent(bus)
     marketing = MarketingAgent(bus)
@@ -67,7 +67,7 @@ def main():
     except Exception as e:
         logger.error(f"Pipeline failed: {e}", exc_info=True)
     finally:
-        # Print full message history summary for audit
+        # Print the full message history for debugging / audit
         history = bus.get_history()
         print(f"\n{'#'*60}")
         print(f"  FULL MESSAGE HISTORY ({len(history)} messages)")
