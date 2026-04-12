@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyDocGenAI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .hero-section {
+            background-image: linear-gradient(135deg, #6dd5ed, #2193b0);
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero-title {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .hero-subtitle {
+            font-size: 1.2em;
+            color: #fff;
+            max-width: 600px;
+            margin: auto;
+        }
+        .features-section, .testimonials-section {
+            padding: 40px 20px;
+        }
+        .feature-card, .testimonial-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .feature-card img, .testimonial-card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .feature-title, .testimonial-name {
+            font-weight: bold;
+        }
+        .cta-button {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .cta-btn {
+            background-color: #2193b0;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .cta-btn:hover {
+            background-color: #6dd5ed;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .feature-card, .testimonial-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .feature-card img, .testimonial-card img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero-section">
+    <h1 class="hero-title">PyDocGenAI</h1>
+    <p class="hero-subtitle">Automates the generation of semantic test cases and structured docstrings for Python projects, significantly reducing manual documentation efforts and improving code quality.</p>
+</section>
+
+<section class="features-section">
+    <h2>Key Features</h2>
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="Feature Icon">
+        <div>
+            <h3 class="feature-title">Semantic Test Case Generation</h3>
+            <p>Utilizes proprietary NLP algorithms to analyze Python code and automatically generate relevant test cases, reducing manual testing efforts by up to 50%.</p>
+        </div>
+    </div>
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="Feature Icon">
+        <div>
+            <h3 class="feature-title">Structured Docstring Creation</h3>
+            <p>Automatically generates comprehensive docstrings using advanced natural language processing, improving code readability and maintenance.</p>
+        </div>
+    </div>
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="Feature Icon">
+        <div>
+            <h3 class="feature-title">Legacy Code Analysis</h3>
+            <p>Evaluates legacy Python codebases to identify undocumented or poorly documented sections, facilitating targeted improvements.</p>
+        </div>
+    </div>
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="Feature Icon">
+        <div>
+            <h3 class="feature-title">Integration with CI/CD Pipelines</h3>
+            <p>Seamlessly integrates with existing continuous integration and deployment pipelines to ensure ongoing documentation quality checks.</p>
+        </div>
+    </div>
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="Feature Icon">
+        <div>
+            <h3 class="feature-title">Customizable Output Formats</h3>
+            <p>Offers flexibility in output formats for test cases and docstrings, catering to various team preferences and project requirements.</p>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-section">
+    <h2>User Testimonials</h2>
+    <div class="testimonial-card">
+        <img src="https://via.placeholder.com/50" alt="User Avatar">
+        <div>
+            <h3 class="testimonial-name">Alice - Software Developer</h3>
+            <p>Spends excessive time manually writing and updating docstrings in legacy code, leading to delays in project delivery.</p>
+        </div>
+    </div>
+    <div class="testimonial-card">
+        <img src="https://via.placeholder.com/50" alt="User Avatar">
+        <div>
+            <h3 class="testimonial-name">Bob - QA Engineer</h3>
+            <p>Finds it challenging to create comprehensive test cases for complex legacy systems without clear documentation, increasing the risk of undetected bugs.</p>
+        </div>
+    </div>
+    <div class="testimonial-card">
+        <img src="https://via.placeholder.com/50" alt="User Avatar">
+        <div>
+            <h3 class="testimonial-name">Charlie - Project Manager</h3>
+            <p>Faces difficulties in ensuring codebase quality and maintainability due to incomplete or outdated documentation, affecting team productivity.</p>
+        </div>
+    </div>
+</section>
+
+<div class="cta-button">
+    <a href="#" class="cta-btn">Get Started with PyDocGenAI Today!</a>
+</div>
+
+<footer>
+    &copy; 2023 PyDocGenAI. All rights reserved.
+</footer>
+
+</body>
+</html>
