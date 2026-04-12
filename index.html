@@ -3,238 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyCodeEnhancer</title>
+    <title>CodeDocGen</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            line-height: 1.6;
             color: #333;
+            background-color: #f4f4f9;
         }
         
         .container {
-            width: 80%;
             max-width: 1200px;
             margin: auto;
             overflow: hidden;
+            padding: 0 20px;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(145deg, #6b5b95, #8f7acc);
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
-            padding: 50px 20px;
-            text-align: center;
+            padding: 50px 0;
         }
         
         .hero h1 {
-            font-size: 2.5em;
+            font-size: 3rem;
             margin-bottom: 10px;
         }
 
         .hero p {
-            font-size: 1.2em;
-            line-height: 1.6;
+            font-size: 1.5rem;
+            max-width: 600px;
         }
 
-        /* Features Section */
-        .features {
-            padding: 40px 20px;
-            background-color: #f9f9f9;
+        section {
+            padding: 60px 0;
         }
-        
-        .feature-card {
+
+        .features, .testimonials {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            background-color: white;
+            justify-content: space-around;
+            flex-wrap: wrap;
         }
 
-        .feature-card img {
-            width: 60px;
-            margin-right: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-
-        /* User Personas/Testimonials Section */
-        .testimonials {
-            padding: 40px 20px;
-            background-color: #fff;
-        }
-        
-        .testimonial-card {
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-
-        .testimonial-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .testimonial-card p,
-        .testimonial-card span {
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-
-        /* Call to Action Section */
-        .cta-section {
-            background-color: #6b5b95;
-            color: white;
-            padding: 50px 20px;
+        .card, .testimonial {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 30px;
+            width: calc(33% - 40px);
             text-align: center;
         }
+
+        .card img {
+            max-width: 50px;
+            height: auto;
+        }
         
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
         .cta-button {
             display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border-radius: 5px;
-            background-color: #8f7acc;
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
             color: white;
+            border-radius: 5px;
             text-decoration: none;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
         }
 
         @media (max-width: 768px) {
-            .feature-card,
-            .testimonial-card {
+            .features, .testimonials {
                 flex-direction: column;
-                align-items: start;
+                align-items: center;
             }
             
-            .feature-card img,
-            .cta-button {
-                margin-bottom: 15px;
+            .card, .testimonial {
+                width: calc(100% - 40px);
             }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="container">
-            <h1>PyCodeEnhancer</h1>
-            <p>PyCodeEnhancer is a Python CLI tool that uses advanced NLP techniques to automatically generate semantic test cases and structured docstrings, significantly reducing manual documentation effort for developers working on legacy codebases.</p>
-        </div>
-    </header>
+<header class="container">
+    <div class="hero text-center">
+        <h1>CodeDocGen</h1>
+        <p>Automatically generate comprehensive documentation and test cases for legacy Python systems using advanced AI-powered NLP.</p>
+        <a href="#" class="cta-button">Get Started</a>
+    </div>
+</header>
 
-    <section class="features">
-        <div class="container">
-            <h2>Key Features</h2>
-            
-            <div class="feature-card">
-                <img src="icon-testcase.svg" alt="Semantic Test Case Generation Icon">
-                <div>
-                    <h3>Semantic Test Case Generation</h3>
-                    <p>Utilizes NLP algorithms to analyze legacy code and automatically generate relevant test cases, reducing manual testing time by up to 30%.</p>
-                </div>
-            </div>
+<section class="container features">
+    <div class="card">
+        <img src="icons/nlp.svg" alt="NLP Analysis">
+        <h2>Natural Language Processing Analysis</h2>
+        <p>Employs proprietary semantic analysis algorithms to interpret legacy code semantics beyond standard syntax parsing.</p>
+    </div>
 
-            <div class="feature-card">
-                <img src="icon-docstring.svg" alt="Structured Docstring Creation Icon">
-                <div>
-                    <h3>Structured Docstring Creation</h3>
-                    <p>Generates comprehensive docstrings for functions and classes based on code semantics, improving documentation quality and developer understanding.</p>
-                </div>
-            </div>
+    <div class="card">
+        <img src="icons/docstring.svg" alt="Docstring Generation">
+        <h2>Automatic Docstring Generation</h2>
+        <p>Generates structured and meaningful docstrings in real-time, leveraging machine learning models trained on diverse coding patterns.</p>
+    </div>
 
-            <div class="feature-card">
-                <img src="icon-integration.svg" alt="Seamless Integration with Existing Codebases Icon">
-                <div>
-                    <h3>Seamless Integration with Existing Codebases</h3>
-                    <p>Offers easy integration into various project structures without requiring major refactoring, supporting common version control systems like Git.</p>
-                </div>
-            </div>
+    <div class="card">
+        <img src="icons/testcase.svg" alt="Test Case Creation">
+        <h2>Semantic Test Case Creation</h2>
+        <p>Automatically creates test cases that align with the inferred functionality of legacy code segments, reducing manual effort.</p>
+    </div>
 
-            <div class="feature-card">
-                <img src="icon-customize.svg" alt="Customizable NLP Models Icon">
-                <div>
-                    <h3>Customizable NLP Models</h3>
-                    <p>Allows users to tailor the underlying NLP models to specific coding styles and terminologies used within their projects.</p>
-                </div>
-            </div>
+    <div class="card">
+        <img src="icons/ci.svg" alt="CI/CD Integration">
+        <h2>Integration Support for CI/CD Pipelines</h2>
+        <p>Seamless integration options for continuous integration and deployment pipelines to automate testing and documentation updates.</p>
+    </div>
 
-            <div class="feature-card">
-                <img src="icon-update.svg" alt="Real-time Documentation Updates Icon">
-                <div>
-                    <h3>Real-time Documentation Updates</h3>
-                    <p>Automatically updates documentation as code changes, ensuring that docstrings remain accurate throughout development cycles.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="card">
+        <img src="icons/format.svg" alt="Output Formats">
+        <h2>Customizable Output Formats</h2>
+        <p>Offers flexible output formats for both documentation and test cases, catering to specific organizational standards.</p>
+    </div>
+</section>
 
-    <section class="testimonials">
-        <div class="container">
-            <h2>User Personas</h2>
-            
-            <div class="testimonial-card">
-                <img src="user-alice.svg" alt="Alice Johnson Icon">
-                <div>
-                    <h3>Alice Johnson</h3>
-                    <span>Software Developer at TechCorp</span>
-                    <p>Struggles with maintaining up-to-date documentation in a large enterprise codebase, often spending over 10 hours weekly manually writing test cases and docstrings.</p>
-                </div>
-            </div>
+<section class="container testimonials text-center">
+    <h2>User Testimonials</h2>
+    <div class="testimonial">
+        <p>"As a Legacy System Maintainer, CodeDocGen's NLP analysis feature allows me to focus on system improvements rather than deciphering legacy code."</p>
+        <strong>Alice Johnson - Legacy System Maintainer</strong>
+    </div>
 
-            <div class="testimonial-card">
-                <img src="user-bob.svg" alt="Bob Smith Icon">
-                <div>
-                    <h3>Bob Smith</h3>
-                    <span>Open Source Contributor</span>
-                    <p>Faced challenges integrating contributions into legacy projects due to inadequate documentation, leading to an increase in error rates by 15% during integration testing phases.</p>
-                </div>
-            </div>
+    <div class="testimonial">
+        <p>"CodeDocGen creates semantic test cases for my legacy projects, ensuring robust testing with less manual work as a Software Developer."</p>
+        <strong>Bob Smith - Software Developer</strong>
+    </div>
 
-            <div class="testimonial-card">
-                <img src="user-carol.svg" alt="Carol Lee Icon">
-                <div>
-                    <h3>Carol Lee</h3>
-                    <span>Quality Assurance Engineer at StartUpCo</span>
-                    <p>Experiences frequent project setbacks due to insufficient test coverage and poorly documented code, resulting in a 20% increase in post-release bug fixes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="testimonial">
+        <p>"As a Technical Lead, CodeDocGen provides structured docstrings and comprehensive documentation, helping new team members quickly understand existing systems."</p>
+        <strong>Carol Lee - Technical Lead</strong>
+    </div>
+</section>
 
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Enhance Your Code?</h2>
-            <a href="#" class="cta-button">Get Started</a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <p>&copy; 2023 PyCodeEnhancer. All rights reserved.</p>
-    </footer>
+<footer>
+    <p>&copy; 2023 CodeDocGen. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
