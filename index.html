@@ -9,121 +9,232 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             color: #333;
         }
+        
         .container {
+            width: 80%;
             max-width: 1200px;
             margin: auto;
-            padding: 20px;
+            overflow: hidden;
         }
-        header, section, footer {
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(145deg, #6b5b95, #8f7acc);
+            color: white;
+            padding: 50px 20px;
             text-align: center;
         }
-        .hero-section {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            padding: 100px 0;
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
         }
-        .features-section, .testimonials-section {
-            padding: 50px 20px;
+
+        .hero p {
+            font-size: 1.2em;
+            line-height: 1.6;
         }
-        .feature-card, .testimonial {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        /* Features Section */
+        .features {
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .feature-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            background-color: white;
         }
-        h1, h2 {
-            margin: 10px 0;
+
+        .feature-card img {
+            width: 60px;
+            margin-right: 20px;
         }
-        .cta-button {
-            background-color: #2575fc;
+        
+        .feature-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* User Personas/Testimonials Section */
+        .testimonials {
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+        
+        .testimonial-card {
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .testimonial-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-card p,
+        .testimonial-card span {
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background-color: #6b5b95;
             color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 18px;
-            cursor: pointer;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
             border-radius: 5px;
+            background-color: #8f7acc;
+            color: white;
             text-decoration: none;
-            transition: background 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
-        .cta-button:hover {
-            background-color: #1b4a8a;
-        }
-        footer {
-            background-color: #f8f9fa;
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: #fff;
             padding: 20px 0;
-            font-size: 14px;
+            text-align: center;
         }
-        @media (min-width: 768px) {
-            .features-section, .testimonials-section {
-                display: flex;
-                justify-content: space-around;
-                flex-wrap: wrap;
+
+        @media (max-width: 768px) {
+            .feature-card,
+            .testimonial-card {
+                flex-direction: column;
+                align-items: start;
             }
-            .feature-card, .testimonial {
-                width: calc(50% - 40px);
+            
+            .feature-card img,
+            .cta-button {
+                margin-bottom: 15px;
             }
         }
     </style>
 </head>
 <body>
 
-<header class="hero-section">
-    <div class="container">
-        <h1>PyCodeEnhancer</h1>
-        <p>Automate your Python documentation with advanced NLP techniques for legacy codebases.</p>
-    </div>
-</header>
+    <header class="hero">
+        <div class="container">
+            <h1>PyCodeEnhancer</h1>
+            <p>PyCodeEnhancer is a Python CLI tool that uses advanced NLP techniques to automatically generate semantic test cases and structured docstrings, significantly reducing manual documentation effort for developers working on legacy codebases.</p>
+        </div>
+    </header>
 
-<section class="features-section container">
-    <h2>Features</h2>
-    <div class="feature-card">
-        <h3>Semantic Test Case Generation</h3>
-        <p>Utilizes NLP algorithms to automatically generate relevant test cases, reducing manual testing time by up to 30%.</p>
-    </div>
-    <div class="feature-card">
-        <h3>Structured Docstring Creation</h3>
-        <p>Generates comprehensive docstrings for functions and classes based on code semantics, improving documentation quality and developer understanding.</p>
-    </div>
-    <div class="feature-card">
-        <h3>Seamless Integration with Existing Codebases</h3>
-        <p>Offers easy integration into various project structures without requiring major refactoring, supporting common version control systems like Git.</p>
-    </div>
-    <div class="feature-card">
-        <h3>Customizable NLP Models</h3>
-        <p>Allows users to tailor the underlying NLP models to specific coding styles and terminologies used within their projects.</p>
-    </div>
-    <div class="feature-card">
-        <h3>Real-time Documentation Updates</h3>
-        <p>Automatically updates documentation as code changes, ensuring that docstrings remain accurate throughout development cycles.</p>
-    </div>
-</section>
+    <section class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            
+            <div class="feature-card">
+                <img src="icon-testcase.svg" alt="Semantic Test Case Generation Icon">
+                <div>
+                    <h3>Semantic Test Case Generation</h3>
+                    <p>Utilizes NLP algorithms to analyze legacy code and automatically generate relevant test cases, reducing manual testing time by up to 30%.</p>
+                </div>
+            </div>
 
-<section class="testimonials-section container">
-    <h2>User Testimonials</h2>
-    <div class="testimonial">
-        <strong>Alice Johnson - Software Developer at TechCorp</strong><br>
-        Struggles with maintaining up-to-date documentation in a large enterprise codebase, often spending over 10 hours weekly manually writing test cases and docstrings.
-    </div>
-    <div class="testimonial">
-        <strong>Bob Smith - Open Source Contributor</strong><br>
-        Faced challenges integrating contributions into legacy projects due to inadequate documentation, leading to an increase in error rates by 15% during integration testing phases.
-    </div>
-    <div class="testimonial">
-        <strong>Carol Lee - Quality Assurance Engineer at StartUpCo</strong><br>
-        Experiences frequent project setbacks due to insufficient test coverage and poorly documented code, resulting in a 20% increase in post-release bug fixes.
-    </div>
-</section>
+            <div class="feature-card">
+                <img src="icon-docstring.svg" alt="Structured Docstring Creation Icon">
+                <div>
+                    <h3>Structured Docstring Creation</h3>
+                    <p>Generates comprehensive docstrings for functions and classes based on code semantics, improving documentation quality and developer understanding.</p>
+                </div>
+            </div>
 
-<section class="container" style="padding: 50px 20px;">
-    <a href="#" class="cta-button">Get Started with PyCodeEnhancer</a>
-</section>
+            <div class="feature-card">
+                <img src="icon-integration.svg" alt="Seamless Integration with Existing Codebases Icon">
+                <div>
+                    <h3>Seamless Integration with Existing Codebases</h3>
+                    <p>Offers easy integration into various project structures without requiring major refactoring, supporting common version control systems like Git.</p>
+                </div>
+            </div>
 
-<footer>
-    &copy; 2023 PyCodeEnhancer. All rights reserved.
-</footer>
+            <div class="feature-card">
+                <img src="icon-customize.svg" alt="Customizable NLP Models Icon">
+                <div>
+                    <h3>Customizable NLP Models</h3>
+                    <p>Allows users to tailor the underlying NLP models to specific coding styles and terminologies used within their projects.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <img src="icon-update.svg" alt="Real-time Documentation Updates Icon">
+                <div>
+                    <h3>Real-time Documentation Updates</h3>
+                    <p>Automatically updates documentation as code changes, ensuring that docstrings remain accurate throughout development cycles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>User Personas</h2>
+            
+            <div class="testimonial-card">
+                <img src="user-alice.svg" alt="Alice Johnson Icon">
+                <div>
+                    <h3>Alice Johnson</h3>
+                    <span>Software Developer at TechCorp</span>
+                    <p>Struggles with maintaining up-to-date documentation in a large enterprise codebase, often spending over 10 hours weekly manually writing test cases and docstrings.</p>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="user-bob.svg" alt="Bob Smith Icon">
+                <div>
+                    <h3>Bob Smith</h3>
+                    <span>Open Source Contributor</span>
+                    <p>Faced challenges integrating contributions into legacy projects due to inadequate documentation, leading to an increase in error rates by 15% during integration testing phases.</p>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="user-carol.svg" alt="Carol Lee Icon">
+                <div>
+                    <h3>Carol Lee</h3>
+                    <span>Quality Assurance Engineer at StartUpCo</span>
+                    <p>Experiences frequent project setbacks due to insufficient test coverage and poorly documented code, resulting in a 20% increase in post-release bug fixes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Enhance Your Code?</h2>
+            <a href="#" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2023 PyCodeEnhancer. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
