@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyDocGenAI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        header, footer {
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .hero {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .features, .testimonials {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .feature-card, .testimonial-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            flex-basis: calc(33% - 40px);
+        }
+        .feature-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #764ba2;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            margin-right: 15px;
+            color: white;
+        }
+        .cta {
+            display: block;
+            width: max-content;
+            padding: 10px 20px;
+            background-color: #764ba2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 40px auto;
+            font-size: 18px;
+        }
+        .testimonial-text {
+            font-style: italic;
+        }
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .features, .testimonials {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-card, .testimonial-card {
+                flex-basis: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>PyDocGenAI</h1>
+        </div>
+    </header>
+
+    <section class="hero container">
+        <h2>Streamline Documentation and Testing in Python Projects with AI</h2>
+        <p>Reduce time on manual updates, improve code quality.</p>
+        <a href="#" class="cta">Get Started Today</a>
+    </section>
+
+    <section class="features container">
+        <div class="feature-card">
+            <div class="feature-icon">&#128269;</div>
+            <h3>AI-Powered Docstring Generation</h3>
+            <p>Automatically creates and updates structured docstrings using AI.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#127761;</div>
+            <h3>NLP Test Case Generation</h3>
+            <p>Leverages NLP models to generate semantic test cases from descriptions.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128229;</div>
+            <h3>Legacy Codebase Analysis</h3>
+            <p>Evaluates codebases for documentation gaps and provides insights.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#127968;</div>
+            <h3>IDE Integration</h3>
+            <p>Integrates with VSCode and PyCharm for real-time docstring generation.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128161;</div>
+            <h3>User Feedback Loop</h3>
+            <p>Incorporates user feedback to improve AI models continuously.</p>
+        </div>
+    </section>
+
+    <section class="testimonials container">
+        <div class="testimonial-card">
+            <p class="testimonial-text">"As a Software Developer, I love how PyDocGenAI updates legacy documentation without manual effort."</p>
+            <h4>Alice - Software Developer</h4>
+        </div>
+        <div class="testimonial-card">
+            <p class="testimonial-text">"The NLP Test Case Generation feature helps me meet deadlines efficiently. A must-have for any project manager!"</p>
+            <h4>Bob - Project Manager</h4>
+        </div>
+        <div class="testimonial-card">
+            <p class="testimonial-text">"IDE Integration allows real-time docstring checks, ensuring consistency across our codebase."</p>
+            <h4>Carol - QA Engineer</h4>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 PyDocGenAI. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
