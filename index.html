@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSense CLI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        header, footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+        .hero {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .features-section, .testimonials-section {
+            padding: 50px 0;
+        }
+        h1, h2, h3 {
+            margin: 0;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .feature-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .feature-card img {
+            width: 40px;
+            height: 40px;
+            margin-right: 20px;
+        }
+        .btn-primary {
+            background-color: #2575fc;
+            color: white;
+            padding: 10px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #6a11cb;
+        }
+        .testimonial {
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+            .feature-card, .testimonial {
+                flex-direction: column;
+                text-align: center;
+            }
+            .feature-card img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>CodeSense CLI</h1>
+    </div>
+</header>
+
+<section class="hero container">
+    <h2>An AI-driven CLI tool that enhances productivity by generating semantic test cases and structured docstrings, specifically designed to streamline the development process for teams handling legacy codebases.</h2>
+</section>
+
+<section class="features-section container">
+    <h3>Key Features</h3>
+    <div class="feature-card">
+        <img src="icons/test-case.svg" alt="Test Case Icon">
+        <div>
+            <h4>Semantic Test Case Generation</h4>
+            <p>Automatically generates test cases that cover various logical paths in legacy Python code, reducing manual testing efforts by up to 50%.</p>
+        </div>
+    </div>
+    <div class="feature-card">
+        <img src="icons/docstring.svg" alt="Docstring Icon">
+        <div>
+            <h4>Structured Docstring Creation</h4>
+            <p>Creates detailed and structured docstrings for legacy functions and modules, significantly improving code readability and maintainability.</p>
+        </div>
+    </div>
+    <div class="feature-card">
+        <img src="icons/ai-nlp.svg" alt="AI NLP Icon">
+        <div>
+            <h4>AI-Powered NLP Analysis</h4>
+            <p>Utilizes proprietary AI algorithms to understand the context of the codebase, ensuring highly relevant test cases and documentation suggestions.</p>
+        </div>
+    </div>
+    <div class="feature-card">
+        <img src="icons/ci-cd.svg" alt="CI/CD Icon">
+        <div>
+            <h4>Integration with CI/CD Pipelines</h4>
+            <p>Seamlessly integrates with existing continuous integration and deployment pipelines to automate testing and documentation generation as part of the build process.</p>
+        </div>
+    </div>
+    <div class="feature-card">
+        <img src="icons/customization.svg" alt="Customization Icon">
+        <div>
+            <h4>Customization Options</h4>
+            <p>Offers configurable settings allowing users to tailor test case generation and docstring formats according to their specific project requirements.</p>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-section container">
+    <h3>User Personas</h3>
+    <div class="testimonial">
+        <p><strong>Alex Johnson, Software Engineer at TechCorp:</strong> Struggles with maintaining a large legacy Python codebase due to inadequate documentation and test coverage, leading to increased debugging time and delayed project timelines.</p>
+    </div>
+    <div class="testimonial">
+        <p><strong>Maria Lopez, QA Lead at FinServ Inc.:</strong> Finds it challenging to ensure thorough testing of complex financial software systems because existing tests are outdated and poorly documented, resulting in frequent undetected bugs.</p>
+    </div>
+    <div class="testimonial">
+        <p><strong>Raj Patel, DevOps Engineer at HealthNet Solutions:</strong> Experiences difficulty automating deployment processes due to inconsistent code documentation which hampers the onboarding of new team members and slows down development cycles.</p>
+    </div>
+</section>
+
+<section class="hero container" style="background: linear-gradient(135deg, #2575fc, #6a11cb); padding: 50px 20px;">
+    <a href="#" class="btn-primary">Get Started with CodeSense CLI Today!</a>
+</section>
+
+<footer>
+    <div class="container">
+        &copy; 2023 CodeSense CLI. All rights reserved.
+    </div>
+</footer>
+
+</body>
+</html>
