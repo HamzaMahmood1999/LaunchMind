@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyDocGenAI</title>
+    <title>PyDocCase</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+            background-color: #f5f6fa;
         }
         .container {
             max-width: 1200px;
@@ -17,64 +17,77 @@
             padding: 20px;
         }
         header, footer {
-            background-color: #282c34;
-            color: white;
             text-align: center;
-            padding: 1em 0;
+            color: white;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 40px 20px;
         }
         .hero {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             text-align: center;
-            padding: 50px 20px;
+            color: white;
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.5em;
+            max-width: 600px;
         }
         .features, .testimonials {
             display: flex;
-            justify-content: space-around;
             flex-wrap: wrap;
-            margin-top: 30px;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 0;
         }
         .feature-card, .testimonial-card {
-            background-color: #fff;
+            background: white;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 10px;
             flex-basis: calc(33% - 40px);
-        }
-        .feature-icon {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background-color: #764ba2;
-            border-radius: 50%;
+            padding: 20px;
             text-align: center;
-            line-height: 50px;
-            margin-right: 15px;
-            color: white;
         }
-        .cta {
+        .feature-card h3 {
+            margin-top: 10px;
+        }
+        .cta-button {
             display: block;
             width: max-content;
-            padding: 10px 20px;
+            margin: 30px auto;
             background-color: #764ba2;
             color: white;
-            text-decoration: none;
+            padding: 15px 40px;
             border-radius: 5px;
-            margin: 40px auto;
-            font-size: 18px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
         }
-        .testimonial-text {
-            font-style: italic;
+        .cta-button:hover {
+            background-color: #667eea;
         }
         footer p {
-            margin: 0;
+            margin-top: 20px;
+            font-size: 0.9em;
         }
-
         @media (max-width: 768px) {
-            .features, .testimonials {
-                flex-direction: column;
-                align-items: center;
+            .feature-card, .testimonial-card {
+                flex-basis: calc(50% - 40px);
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1.2em;
             }
             .feature-card, .testimonial-card {
                 flex-basis: calc(100% - 40px);
@@ -82,67 +95,77 @@
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <div class="container">
-            <h1>PyDocGenAI</h1>
-        </div>
-    </header>
 
-    <section class="hero container">
-        <h2>Streamline Documentation and Testing in Python Projects with AI</h2>
-        <p>Reduce time on manual updates, improve code quality.</p>
-        <a href="#" class="cta">Get Started Today</a>
-    </section>
+<header>
+    <div class="container">
+        <h1>PyDocCase</h1>
+        <p>Streamline your documentation and testing with AI-powered Python CLI tool.</p>
+    </div>
+</header>
 
-    <section class="features container">
-        <div class="feature-card">
-            <div class="feature-icon">&#128269;</div>
-            <h3>AI-Powered Docstring Generation</h3>
-            <p>Automatically creates and updates structured docstrings using AI.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">&#127761;</div>
-            <h3>NLP Test Case Generation</h3>
-            <p>Leverages NLP models to generate semantic test cases from descriptions.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">&#128229;</div>
-            <h3>Legacy Codebase Analysis</h3>
-            <p>Evaluates codebases for documentation gaps and provides insights.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">&#127968;</div>
-            <h3>IDE Integration</h3>
-            <p>Integrates with VSCode and PyCharm for real-time docstring generation.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">&#128161;</div>
-            <h3>User Feedback Loop</h3>
-            <p>Incorporates user feedback to improve AI models continuously.</p>
-        </div>
-    </section>
+<section class="hero">
+    <div class="container">
+        <h1>PyDocCase</h1>
+        <p>Automate generation of semantic test cases and structured docstrings for legacy code.</p>
+    </div>
+</section>
 
-    <section class="testimonials container">
-        <div class="testimonial-card">
-            <p class="testimonial-text">"As a Software Developer, I love how PyDocGenAI updates legacy documentation without manual effort."</p>
-            <h4>Alice - Software Developer</h4>
-        </div>
-        <div class="testimonial-card">
-            <p class="testimonial-text">"The NLP Test Case Generation feature helps me meet deadlines efficiently. A must-have for any project manager!"</p>
-            <h4>Bob - Project Manager</h4>
-        </div>
-        <div class="testimonial-card">
-            <p class="testimonial-text">"IDE Integration allows real-time docstring checks, ensuring consistency across our codebase."</p>
-            <h4>Carol - QA Engineer</h4>
-        </div>
-    </section>
+<section class="features container">
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="NLP Icon">
+        <h3>NLP-driven Semantic Understanding</h3>
+        <p>Leverages NLP techniques to interpret complex code patterns.</p>
+    </div>
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="CLI Icon">
+        <h3>Seamless CLI Integration</h3>
+        <p>Easily integrates into existing Python development environments.</p>
+    </div>
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="Code Icon">
+        <h3>Legacy Code Analysis</h3>
+        <p>Analyzes legacy codebases to identify undocumented functionalities.</p>
+    </div>
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="Doc Icon">
+        <h3>Automated Documentation Updates</h3>
+        <p>Generates structured docstrings with minimal manual intervention.</p>
+    </div>
+    <div class="feature-card">
+        <img src="https://via.placeholder.com/50" alt="Template Icon">
+        <h3>Customizable Test Case Templates</h3>
+        <p>Provides templates for various testing scenarios.</p>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 PyDocGenAI. All rights reserved.</p>
-        </div>
-    </footer>
+<section class="testimonials container">
+    <div class="testimonial-card">
+        <img src="https://via.placeholder.com/80" alt="Alice Johnson">
+        <h4>Alice Johnson - Senior Software Engineer</h4>
+        <p>Spends weeks on manual documentation updates leading to project delays. PyDocCase saves significant time.</p>
+    </div>
+    <div class="testimonial-card">
+        <img src="https://via.placeholder.com/80" alt="Bob Smith">
+        <h4>Bob Smith - Junior Developer</h4>
+        <p>Finds it challenging to understand and document complex legacy code. PyDocCase helps in grasping important functionalities.</p>
+    </div>
+    <div class="testimonial-card">
+        <img src="https://via.placeholder.com/80" alt="Carol Lee">
+        <h4>Carol Lee - QA Engineer</h4>
+        <p>Struggles with ensuring thorough testing of legacy systems. PyDocCase maintains accurate and up-to-date documentation.</p>
+    </div>
+</section>
+
+<section class="container">
+    <a href="#" class="cta-button">Get Started with PyDocCase</a>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2023 PyDocCase. All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>
