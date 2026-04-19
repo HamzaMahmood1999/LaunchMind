@@ -3,117 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyDocGen</title>
+    <title>PyDocGen - AI-Driven Python Tool</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #f4f9fd;
         }
-        .hero {
-            background-image: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .features, .testimonials {
-            padding: 40px 20px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        .feature-card, .testimonial {
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            flex-basis: calc(50% - 40px);
-        }
-        .cta-button {
-            display: block;
-            width: max-content;
-            margin: 40px auto;
-            text-align: center;
-            background-color: #6e8efb;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
+        
+        .container {
+            max-width: 1200px;
+            margin: auto;
             padding: 20px;
         }
 
+        header {
+            text-align: center;
+            color: #fff;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 50px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.8em;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin: 10px 0 30px;
+        }
+
+        .features, .testimonials {
+            background-color: #fff;
+            padding: 40px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .features h2, .testimonials h2 {
+            text-align: center;
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            background-color: #2575fc;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 1.2em;
+        }
+
+        .feature-card div {
+            flex: 1;
+        }
+        
+        .testimonials .testimonial-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta {
+            text-align: center;
+            background-color: #2575fc;
+            color: white;
+            padding: 20px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-block;
+            margin-top: 30px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        
         @media (max-width: 768px) {
             .features, .testimonials {
+                padding: 20px;
+            }
+
+            .feature-card {
                 flex-direction: column;
                 align-items: center;
+                text-align: center;
             }
-            .feature-card, .testimonial {
-                flex-basis: calc(100% - 40px);
+
+            .icon {
+                margin-bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <!-- Hero Section -->
+        <header>
+            <div class="hero">
+                <h1>PyDocGen</h1>
+                <p>An AI-driven Python CLI tool that uniquely combines natural language processing with advanced machine learning to auto-generate semantic test cases and structured docstrings, specifically tailored for complex legacy codebases.</p>
+                <a href="#" class="cta">Get Started Now</a>
+            </div>
+        </header>
 
-<header class="hero">
-    <h1>PyDocGen</h1>
-    <p>An AI-driven Python CLI tool that uniquely combines natural language processing with advanced machine learning to auto-generate semantic test cases and structured docstrings, specifically tailored for complex legacy codebases.</p>
-</header>
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Key Features</h2>
+            <div class="feature-card">
+                <div class="icon">&#127873;</div>
+                <div><strong>AI-Powered Docstring Generation</strong><br>Uses advanced NLP algorithms to analyze code structure and generate precise, context-aware docstrings automatically.</div>
+            </div>
 
-<section class="features">
-    <div class="feature-card">
-        <h2>AI-Powered Docstring Generation</h2>
-        <p>Uses advanced NLP algorithms to analyze code structure and generate precise, context-aware docstrings automatically.</p>
-    </div>
-    <div class="feature-card">
-        <h2>Semantic Test Case Creation</h2>
-        <p>Employs machine learning models to understand legacy code logic and produce relevant test cases that ensure robust testing coverage.</p>
-    </div>
-    <div class="feature-card">
-        <h2>Codebase Complexity Analysis</h2>
-        <p>Evaluates the complexity of legacy systems, providing insights and recommendations for refactoring and optimization.</p>
-    </div>
-    <div class="feature-card">
-        <h2>Customization Options</h2>
-        <p>Allows users to tailor AI models and outputs according to specific coding standards and documentation styles within their organization.</p>
-    </div>
-    <div class="feature-card">
-        <h2>Integration with CI/CD Pipelines</h2>
-        <p>Seamlessly integrates with existing CI/CD systems to automate the generation of docstrings and test cases during builds, enhancing development workflows.</p>
-    </div>
-</section>
+            <div class="feature-card">
+                <div class="icon">&#128197;</div>
+                <div><strong>Semantic Test Case Creation</strong><br>Employs machine learning models to understand legacy code logic and produce relevant test cases that ensure robust testing coverage.</div>
+            </div>
 
-<section class="testimonials">
-    <div class="testimonial">
-        <h3>Alex Johnson - Senior Software Developer</h3>
-        <p>"Struggles to maintain productivity when updating and documenting sprawling legacy systems."</p>
-        <blockquote>As a Senior Software Developer, I want AI-Powered Docstring Generation with PyDocGen so that I can efficiently maintain documentation standards without manual effort.</blockquote>
-    </div>
-    <div class="testimonial">
-        <h3>Maria Lopez - QA Engineer</h3>
-        <p>"Finds it challenging to create meaningful test cases for outdated code without extensive manual intervention."</p>
-        <blockquote>As a QA Engineer, I want Semantic Test Case Creation with PyDocGen to automatically generate meaningful test cases that align with legacy code logic, reducing my workload.</blockquote>
-    </div>
-    <div class="testimonial">
-        <h3>Raj Patel - Technical Lead</h3>
-        <p>"Needs a tool that can reduce onboarding time and documentation efforts for new developers joining the team."</p>
-        <blockquote>As a Technical Lead, I want Codebase Complexity Analysis from PyDocGen to identify potential refactoring areas quickly, thereby streamlining the onboarding process for new developers.</blockquote>
-    </div>
-</section>
+            <div class="feature-card">
+                <div class="icon">&#9881;</div>
+                <div><strong>Codebase Complexity Analysis</strong><br>Evaluates the complexity of legacy systems, providing insights and recommendations for refactoring and optimization.</div>
+            </div>
 
-<a href="#" class="cta-button">Get Started with PyDocGen</a>
+            <div class="feature-card">
+                <div class="icon">&#9998;</div>
+                <div><strong>Customization Options</strong><br>Allows users to tailor AI models and outputs according to specific coding standards and documentation styles within their organization.</div>
+            </div>
 
-<footer class="footer">
-    &copy; 2023 PyDocGen. All rights reserved.
-</footer>
+            <div class="feature-card">
+                <div class="icon">&#9207;</div>
+                <div><strong>Integration with CI/CD Pipelines</strong><br>Seamlessly integrates with existing CI/CD systems to automate the generation of docstrings and test cases during builds, enhancing development workflows.</div>
+            </div>
+        </section>
 
+        <!-- User Personas/Testimonials Section -->
+        <section class="testimonials">
+            <h2>User Testimonials</h2>
+            
+            <div class="testimonial-card">
+                <strong>Alex Johnson - Senior Software Developer</strong><br>
+                "Struggles to maintain productivity when updating and documenting sprawling legacy systems. PyDocGen is a game-changer."
+            </div>
+
+            <div class="testimonial-card">
+                <strong>Maria Lopez - QA Engineer</strong><br>
+                "Finds it challenging to create meaningful test cases for outdated code without extensive manual intervention. PyDocGen makes my job easier."
+            </div>
+
+            <div class="testimonial-card">
+                <strong>Raj Patel - Technical Lead</strong><br>
+                "Needs a tool that can reduce onboarding time and documentation efforts for new developers joining the team. PyDocGen delivers just that."
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2023 PyDocGen. All rights reserved.
+    </footer>
 </body>
 </html>
