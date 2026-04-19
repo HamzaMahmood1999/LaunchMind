@@ -3,167 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyDocCase</title>
+    <title>PyDocCase - AI-Powered Python CLI Tool</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f6fa;
+            color: #333;
+            line-height: 1.6;
         }
+        
         .container {
+            width: 80%;
             max-width: 1200px;
-            margin: auto;
-            padding: 20px;
+            margin: 0 auto;
         }
-        header, footer {
-            text-align: center;
-            color: white;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 40px 20px;
-        }
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            color: white;
-            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 1.5em;
-            max-width: 600px;
-        }
-        .features, .testimonials {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+
+        header, section, footer {
             padding: 40px 0;
         }
-        .feature-card, .testimonial-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex-basis: calc(33% - 40px);
-            padding: 20px;
+
+        header {
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            color: white;
             text-align: center;
         }
-        .feature-card h3 {
-            margin-top: 10px;
+
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
         }
+        
+        .hero p {
+            font-size: 1.4em;
+        }
+
+        .features, .testimonials {
+            background: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card, .testimonial {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .feature-card h3, .testimonial p {
+            flex-grow: 1;
+        }
+
         .cta-button {
             display: block;
-            width: max-content;
-            margin: 30px auto;
-            background-color: #764ba2;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
             color: white;
-            padding: 15px 40px;
-            border-radius: 5px;
-            text-decoration: none;
+            border: none;
+            padding: 15px 30px;
             font-size: 1.2em;
-            transition: background-color 0.3s ease;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
         }
-        .cta-button:hover {
-            background-color: #667eea;
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
         }
-        footer p {
-            margin-top: 20px;
-            font-size: 0.9em;
-        }
+
         @media (max-width: 768px) {
-            .feature-card, .testimonial-card {
-                flex-basis: calc(50% - 40px);
+            .feature-card, .testimonial {
+                flex-direction: column;
+                align-items: start;
             }
-        }
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2em;
-            }
-            .hero p {
-                font-size: 1.2em;
-            }
-            .feature-card, .testimonial-card {
-                flex-basis: calc(100% - 40px);
+            
+            .feature-icon {
+                margin-bottom: 15px;
             }
         }
     </style>
 </head>
 <body>
 
-<header>
+<header class="hero">
     <div class="container">
         <h1>PyDocCase</h1>
-        <p>Streamline your documentation and testing with AI-powered Python CLI tool.</p>
+        <p>AI-Powered Python CLI tool that automates generation of semantic test cases and structured docstrings, streamlining documentation and testing for developers working with legacy code.</p>
     </div>
 </header>
 
-<section class="hero">
-    <div class="container">
-        <h1>PyDocCase</h1>
-        <p>Automate generation of semantic test cases and structured docstrings for legacy code.</p>
-    </div>
-</section>
-
 <section class="features container">
-    <div class="feature-card">
-        <img src="https://via.placeholder.com/50" alt="NLP Icon">
-        <h3>NLP-driven Semantic Understanding</h3>
-        <p>Leverages NLP techniques to interpret complex code patterns.</p>
+    <h2>Key Features</h2>
+    <div class="feature-card" style="--i: 1;">
+        <img src="icon-nlp.png" alt="NLP Icon" class="feature-icon">
+        <div>
+            <h3>NLP-driven Semantic Understanding</h3>
+            <p>Leverages NLP techniques to interpret complex code patterns, generating accurate test cases and docstrings that align with the original intent of legacy code.</p>
+        </div>
     </div>
-    <div class="feature-card">
-        <img src="https://via.placeholder.com/50" alt="CLI Icon">
-        <h3>Seamless CLI Integration</h3>
-        <p>Easily integrates into existing Python development environments.</p>
+    <div class="feature-card" style="--i: 2;">
+        <img src="icon-cli.png" alt="CLI Icon" class="feature-icon">
+        <div>
+            <h3>Seamless CLI Integration</h3>
+            <p>Easily integrates into existing Python development environments, enabling developers to run tests and update documentation without leaving their preferred IDEs.</p>
+        </div>
     </div>
-    <div class="feature-card">
-        <img src="https://via.placeholder.com/50" alt="Code Icon">
-        <h3>Legacy Code Analysis</h3>
-        <p>Analyzes legacy codebases to identify undocumented functionalities.</p>
+    <div class="feature-card" style="--i: 3;">
+        <img src="icon-analysis.png" alt="Analysis Icon" class="feature-icon">
+        <div>
+            <h3>Legacy Code Analysis</h3>
+            <p>Analyzes legacy codebases to identify undocumented functionalities and generate relevant test cases, improving coverage and reliability.</p>
+        </div>
     </div>
-    <div class="feature-card">
-        <img src="https://via.placeholder.com/50" alt="Doc Icon">
-        <h3>Automated Documentation Updates</h3>
-        <p>Generates structured docstrings with minimal manual intervention.</p>
+    <div class="feature-card" style="--i: 4;">
+        <img src="icon-doc.png" alt="Documentation Icon" class="feature-icon">
+        <div>
+            <h3>Automated Documentation Updates</h3>
+            <p>Generates structured docstrings that keep documentation up-to-date with minimal manual intervention, saving developers significant time.</p>
+        </div>
     </div>
-    <div class="feature-card">
-        <img src="https://via.placeholder.com/50" alt="Template Icon">
-        <h3>Customizable Test Case Templates</h3>
-        <p>Provides templates for various testing scenarios.</p>
+    <div class="feature-card" style="--i: 5;">
+        <img src="icon-templates.png" alt="Templates Icon" class="feature-icon">
+        <div>
+            <h3>Customizable Test Case Templates</h3>
+            <p>Provides templates for various testing scenarios, allowing customization to fit specific project needs and coding standards.</p>
+        </div>
     </div>
 </section>
 
 <section class="testimonials container">
-    <div class="testimonial-card">
-        <img src="https://via.placeholder.com/80" alt="Alice Johnson">
-        <h4>Alice Johnson - Senior Software Engineer</h4>
-        <p>Spends weeks on manual documentation updates leading to project delays. PyDocCase saves significant time.</p>
+    <h2>User Personas &amp; Testimonials</h2>
+    <div class="testimonial">
+        <p><strong>Alice Johnson - Senior Software Engineer:</strong> "Spends weeks on manual documentation updates leading to project delays. PyDocCase has significantly reduced these delays by automating test case generation."</p>
     </div>
-    <div class="testimonial-card">
-        <img src="https://via.placeholder.com/80" alt="Bob Smith">
-        <h4>Bob Smith - Junior Developer</h4>
-        <p>Finds it challenging to understand and document complex legacy code. PyDocCase helps in grasping important functionalities.</p>
+    <div class="testimonial">
+        <p><strong>Bob Smith - Junior Developer:</strong> "Finds it challenging to understand and document complex legacy code. With PyDocCase's Legacy Code Analysis, I can better grasp functionalities in my projects."</p>
     </div>
-    <div class="testimonial-card">
-        <img src="https://via.placeholder.com/80" alt="Carol Lee">
-        <h4>Carol Lee - QA Engineer</h4>
-        <p>Struggles with ensuring thorough testing of legacy systems. PyDocCase maintains accurate and up-to-date documentation.</p>
+    <div class="testimonial">
+        <p><strong>Carol Lee - QA Engineer:</strong> "Struggles with ensuring thorough testing of legacy systems due to incomplete documentation. Automated Documentation Updates have improved our testing coverage immensely."</p>
     </div>
 </section>
 
-<section class="container">
-    <a href="#" class="cta-button">Get Started with PyDocCase</a>
+<section class="cta-button container">
+    <a href="#" class="btn">Get Started with PyDocCase Today!</a>
 </section>
 
 <footer>
     <div class="container">
-        <p>&copy; 2023 PyDocCase. All rights reserved.</p>
+        &copy; 2023 PyDocCase. All rights reserved.
     </div>
 </footer>
 
